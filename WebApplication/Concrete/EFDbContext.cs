@@ -10,5 +10,8 @@ namespace WebApplication.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+
+
+        public DbSet<Equipment> Equipments { get; set; }
     }
 }
