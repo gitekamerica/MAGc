@@ -31,6 +31,9 @@ D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\M
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.Owin.Security.Twitter.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.Web.Infrastructure.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Newtonsoft.Json.dll
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.dll
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Common.dll
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Mvc.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Owin.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.Helpers.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.Mvc.dll
@@ -39,8 +42,12 @@ D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\S
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.WebPages.Deployment.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.WebPages.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.WebPages.Razor.dll
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\WebActivatorEx.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\WebGrease.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.xml
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Common.xml
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Mvc.xml
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.Helpers.xml
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.Mvc.xml
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\System.Web.Optimization.xml
@@ -64,13 +71,6 @@ D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\M
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.Owin.Security.Google.xml
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\obj\Debug\WebApplication.dll
 D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\obj\Debug\WebApplication.pdb
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.dll
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Common.dll
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Mvc.dll
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\WebActivatorEx.dll
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.xml
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Common.xml
-D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\bin\Ninject.Web.Mvc.xml
+D:\Projekty\ASP.NET MVC Application with a Custom Layout\C#\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache

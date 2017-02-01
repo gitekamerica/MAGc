@@ -29,6 +29,10 @@ namespace WebApplication.Infrastructure
             // tu umieść dodatkowe powiązania
 
             ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+            ninjectKernel.Bind<IEquipmentRepository>().To<EFEquipmentRepository>();
+
+
         }
     }
 }

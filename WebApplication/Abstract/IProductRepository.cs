@@ -10,5 +10,8 @@ namespace WebApplication.Abstract
    public  interface IProductRepository
     {
         IQueryable<Product> Products { get; }
+
+
+
     }
 }
