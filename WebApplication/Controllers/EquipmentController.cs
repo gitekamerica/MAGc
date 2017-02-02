@@ -11,7 +11,6 @@ namespace WebApplication.Controllers
     public class EquipmentController : Controller
     {
 
-
         private IEquipmentRepository repository;
 
         public EquipmentController (IEquipmentRepository equipmentRepository)
@@ -26,7 +25,7 @@ namespace WebApplication.Controllers
         public ActionResult EquipmentList()
         {
 
-            return      View();
+            return  View();
         }
 
 
@@ -37,12 +36,13 @@ namespace WebApplication.Controllers
             return Json(new { data = equipments }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
 
+
+        [HttpGet]
         public ActionResult Save(int id)
         {
             var v = repository.Equipments.Where(a => a.ID_equipment == id).FirstOrDefault();
-            return View(v);
+            return PartialView(v);
         }
 
 
@@ -55,7 +55,6 @@ namespace WebApplication.Controllers
             {
                 repository.SaveEquipment(equ);
                 status = true;
-
             }
 
             return new JsonResult { Data = new { staus = status } };
