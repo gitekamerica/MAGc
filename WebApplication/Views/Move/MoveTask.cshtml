@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "MoveTask";
+}
+
+<h2>MoveTask</h2>
+
+<div class="container" style="max-width:640px">
+    <div class="master">
+        <h4>Order details </h4>
+
+        <table>
+            <tr>
+               
+                <td>Order No</td>
+                <td>
+                    <input type="text" id="orderNO"/>
+                    <span class="error">Order no required</span>
+                </td>
+
+
+                <td>Order Date</td>
+                <td>
+                    <input type="text" id="OrderDate" />
+                    <span class="error">Valid date required</span>
+                </td>
+
+
+                <td>Description</td>
+                <td colspan="3">
+                    <textarea id="description" style="width:100%"></textarea>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    <div class="details">
+        <h4>Order Items</h4>
+
+        <table width="100%">
+            <tr>
+                <td>Nazwa</td>
+                <td>Ilość</td>
+                <td>Rate</td>
+                <td>&nbsp;</td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <input type="text" id="itemName"/>
+                    <span class="error">Item name required</span>
+                </td>
+
+                <td>
+                    <input type="text" id="quantity"/>
+                    <span class="error">Item name required</span>
+                </td>
+
+
+                <td>
+                    <input type="text" id="rate" />
+                    <span class="error">Item name required</span>
+                </td>
+
+                <td>
+                    <input type="button" id="add" value="add" />
+                    <span class="error">Item name required</span>
+                </td>
+
+
+            </tr>
+
+
+        </table>
+
+        <div id="OrderItems" class="tablecontainer">
+
+
+        </div>
+
+        <div style="padding:10px 0px; text-align:right">
+            <input id="submit" type="button" value="Save" style=" padding:10px 20px" />
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+@section Scripts {
+
+ 
+<script src="~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"></script>
+
+    <script>
+
+        $(function ()
+        {
+            $('#orderDate').datepicker({
+                dateFormat: 'mm-dd-yy'
+
+            });
+
+        })
+
+        $(document).ready(function () {
+
+            var orderItems = [];
+
+            //Add button click function 
+            $('#add').click(function () {
+
+                var IsValidItem = false; 
+
+                if ($('#itemName').val().trim() == '') {
+                    IsValidItem = true;
+                    $('#itemName').siblings('span.error').css('visibility', 'visible');
+                }
+                else
+                {
+                    $('#itemName').siblings('span.error').css('visibility', 'hidden');
+                }
+
+
+                if (IsValidItem)
+                {
+                    orderItems.push({
+
+                        itemName: $("#itemName").val().trim(),
+                        Quantity: parseInt($('#quantity').val().trim()),
+                        Rate: parseFloat($('#rate').val().trim()),
+                        Total: parseInt($('#quantity').val().trim())
+  
+                    });
+
+                    //clear
+
+                    $('#itemName').val('').focus();
+                    $('#quantity', '#rate').val('')
+
+                }
+
+
+                //pupulate orderItems
+
+                GemeratedItemsTable();
+
+
+            });
+
+
+            // Save buttton
+
+            $('#submit').click(function () {
+
+                //validation of order 
+
+                var isAllValid = true;
+
+                if (orderItems.length == 0)
+                {
+
+                    $('#orderItems').html('<span style="color:red;">Please add order items</span>');
+                    isAllValid = false;
+                }
+
+                
+
+
+            });
+
+
+
+            //function for show added items
+
+            function GemeratedItemsTable() {
+                if (orderItems.length > 0)
+                {
+
+                    var $table = $('<table/>');
+
+                    $table.append('<thead><tr><th>Item</th><th>Quanityty</th><th>Rate</th><th>Total</th>');
+
+                    var $tbody = $('<tbody/>');
+
+
+
+                    $.each(orderItems, function (i, val) {
+
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.itemName));
+                        $row.append($('<td/>').html(val.Quantity));
+                        $row.append($('<td/>').html(val.Rate));
+
+
+                        $row.append($('<td/>').html(val.Total));
+                        $tbody.append($row);
+
+
+                    });
+
+                    $table.append($tbody);
+                    $('#orederItems').html($table);
+
+
+
+
+                  
+
+                }
+
+            }
+
+
+        })
+
+
+    </script>
+
+
+}

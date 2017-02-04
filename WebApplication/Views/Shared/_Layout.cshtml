@@ -17,7 +17,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-            <a href="@Url.Action("DashboardV1", "Home")" class="logo">
+          <a href="@Url.Action("DashboardV1", "Home")" class="logo">
                 <span class="logo-mini"><b>W</b>eb</span>
                 <span class="logo-lg"><b>Web</b>Application</span>
             </a>
@@ -240,7 +240,7 @@
                 </form>
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li id="left-sidebar-menu-dashboard" class="treeview">
+                    @*<li id="left-sidebar-menu-dashboard" class="treeview">
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -267,33 +267,59 @@
                             <li id="left-sidebar-menu-charts-flot"><a href="@Url.Action("Flot", "Charts")"><i class="fa fa-circle-o"></i> Flot</a></li>
                             <li id="left-sidebar-menu-charts-inline"><a href="@Url.Action("Inline", "Charts")"><i class="fa fa-circle-o"></i> Inline charts</a></li>
                         </ul>
-                    </li>
+                    </li>*@
                     <li id="left-sidebar-menu-elements" class="treeview">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
-                            <span>UI Elements</span>
+                            <span>Magazyn</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-elements-general"><a href="@Url.Action("General", "Elements")"><i class="fa fa-circle-o"></i> General</a></li>
-                            <li id="left-sidebar-menu-elements-icons"><a href="@Url.Action("Icons", "Elements")"><i class="fa fa-circle-o"></i> Icons</a></li>
-                            <li id="left-sidebar-menu-elements-buttons"><a href="@Url.Action("Buttons", "Elements")"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                            <li id="left-sidebar-menu-elements-sliders"><a href="@Url.Action("Sliders", "Elements")"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                            <li id="left-sidebar-menu-elements-timeline"><a href="@Url.Action("Timeline", "Elements")"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                            <li id="left-sidebar-menu-elements-modals"><a href="@Url.Action("Modals", "Elements")"><i class="fa fa-circle-o"></i> Modals</a></li>
+                            <li id="left-sidebar-menu-elements-general"><a href="@Url.Action("EquipmentList", "Equipment")"><i class="fa fa-circle-o"></i> Pokaż MAGAZYN</a></li>
+                           
                         </ul>
                     </li>
                     <li id="left-sidebar-menu-forms" class="treeview">
                         <a href="#">
-                            <i class="fa fa-edit"></i> <span>Forms</span>
+                            <i class="fa fa-edit"></i> <span>Dokumenty</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-forms-general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                            <li id="left-sidebar-menu-forms-advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                            <li id="left-sidebar-menu-forms-editors"><a href="@Url.Action("Editors", "Forms")"><i class="fa fa-circle-o"></i> Editors</a></li>
+                            <li id="left-sidebar-menu-forms-general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-circle-o"></i>Wyszukaj PRZESUNIĘCIE</a></li>
+                            <li id="left-sidebar-menu-forms-advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-circle-o"></i>Zrób PRZESUNIĘCIE</a></li>
+                          
                         </ul>
                     </li>
+
+                    <li id="left-sidebar-menu-multilevel" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-share"></i> <span>Przesunięcia magazynowe</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li id="left-sidebar-menu-elements-general"><a href="@Url.Action("MoveTask", "Move")"><i class="fa fa-circle-o"></i>Wykonaj przesuniecie</a></li>
+
+
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                                        <ul class="treeview-menu">
+                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                        </ul>
+                    </li>
+
+
                     <li id="left-sidebar-menu-tables" class="treeview">
                         <a href="#">
                             <i class="fa fa-table"></i> <span>Tables</span>
@@ -339,29 +365,7 @@
                             <li id="left-sidebar-menu-examples-pace"><a href="@Url.Action("Pace", "Examples")"><i class="fa fa-circle-o"></i> Pace Page</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-multilevel" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-share"></i> <span>Multilevel</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                        </ul>
-                    </li>
+                   
                     <li id="left-sidebar-menu-documentation">
                         <a href="@Url.Action("Index", "Documentation")">
                             <i class="fa fa-book"></i>

@@ -6,12 +6,19 @@ using System.Web;
 
 namespace WebApplication.Entities
 {
+
+
     public class Equipment
     {
         [Key]
+        [ScaffoldColumn(false)]
         public int ID_equipment { get; set; }
         public string EquipementName { get; set; }
         public string EquipmentDescription { get; set; }
 
     }
+
+
+
+
 }

@@ -1,9 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "EquipmentList";
-}
-
-<h2>EquipmentList</h2>
 
 <link href="~/AdminLTE/plugins/datatables/css/jquery.dataTables.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -12,30 +7,17 @@
 
 
 
-
-
-<div style="width:90%; margin:0 auto " class="tablecontainer">
-    <a class="popup btn btn-primary" href="/Equipment/Save/0" style="margin-bottom:20px;">Add new equipement</a>
+<div style="width:90%; margin:0 auto" class="tablecontainer">
+    <a class="popup btn btn-primary" href="/Equipment/Save/0" style="margin-bottom:20px;">Dodaj nowy sprzęt</a>
     <table id="myDatatable">
         <thead>
-            <tr>
-                <th>ID_equipment</th>
-                <th>EquipementName</th>
-                <th>EquipmentDescription</th>
-
-                <th>Edit</th>
-
-
+            <tr>               
+                <th>Nazwa sprzętu</th>
+                <th>Opis sprzętu</th>
+                <th>Wykonaj</th>
             </tr>
-
         </thead>
-
-
     </table>
-
-
-
-
 </div>
 
 
@@ -59,12 +41,11 @@
                           "type": "get",
                           "datatype": "json"
                       },
-
                     "columns":
                         [
-                        { "data": "EquipementName", "autoWidth": true },
+                        { "data": "EquipementName", "autoWidth": true, "title": "Nazwa sprzętu" },
                         { "data": "EquipmentDescription", "autoWidth": true },
-                        { "data": "ID_equipment", "width": "50px", "render": function (data) { return '<a class="popup" href="/Equipment/Save/' + data + '"> Edit </a>' } }
+                        { "data": "ID_equipment", "width": "50px", "render": function (data) { return '<a class="popup" href="/Equipment/Save/' + data + '">Edycja</a>' } }
                         ]
                 })
 
@@ -72,20 +53,18 @@
                 $('.tablecontainer').on('click', 'a.popup', function (e) {
                     e.preventDefault();
                     OpenPopup($(this).attr('href'));
-
-
                 })
                 
 
+
                 function OpenPopup(pageUrl)
                 {
-
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
 
-                    $dialog = $('<div class="popupWindow" style="overflow:auto"></div>').html($pageContent).dialog({
-                        draggable: false,
+                    $dialog = $('<div class="popupWindow" style="overflow:auto "></div>').html($pageContent).dialog({
+                        draggable: true,
                         autoOpen: false,
                         resizable: false,
                         model: true,
@@ -98,31 +77,25 @@
                         }
                     })
 
+
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
+
                         var url = $('#popupForm')[0].action;
 
                         $.ajax({
                             type: "POST",
                             url: url,
                             data: $('#popupForm').serialize(),
-                            success: function (data) {
-
-                             
+                            success: function (data) {                    
                                     $dialog.dialog('close');
-                                    oTable.ajax.reload();
-                                
-
-                            }
-                           
-                     
+                                    oTable.ajax.reload();                    
+                            }         
                         })
-
 
                         e.preventDefault()
                     })
 
                     $dialog.dialog('open');
-
                 }
 
             })
