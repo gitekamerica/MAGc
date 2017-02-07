@@ -11,7 +11,13 @@ namespace WebApplication.Concrete
     {
         public DbSet<Product> Products { get; set; }
 
-
         public DbSet<Equipment> Equipments { get; set; }
+
+        public DbSet<MoveStorage> MoveStorages { get; set; }
+
+        public DbSet<MoveDetails> MoveDetails { get; set; }
+
+
+
     }
 }

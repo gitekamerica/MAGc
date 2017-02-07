@@ -32,6 +32,12 @@ namespace WebApplication.Infrastructure
 
             ninjectKernel.Bind<IEquipmentRepository>().To<EFEquipmentRepository>();
 
+            ninjectKernel.Bind<IMoveStorage>().To<EFMoveStorageRepository>();
+
+
+            ninjectKernel.Bind<IMoveDetails>().To<EFMoveDetailsRepository>();
+
+
 
         }
     }

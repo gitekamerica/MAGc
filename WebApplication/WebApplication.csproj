@@ -179,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IEquipmentRepository.cs" />
+    <Compile Include="Abstract\IMoveDetails.cs" />
+    <Compile Include="Abstract\IMoveStorage.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -188,6 +190,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFEquipmentRepository.cs" />
+    <Compile Include="Concrete\EFMoveDetailsRepository.cs" />
+    <Compile Include="Concrete\EFMoveStorageRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />

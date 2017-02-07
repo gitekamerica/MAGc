@@ -8,11 +8,17 @@ namespace WebApplication.Models
 {
     public class MoveVM
     {
+      
+    //    public DateTime MoveDate { get; set; }
+     
 
-        public string  MoveNo { get; set; }
-        public DateTime MoveDate { get; set; }
-        public string Description { get; set; }
+        public string MoveNo { get; set; }
+     
+
+        public string MoveDescription { get; set; }
+
         public List<MoveDetails> MoveList { get; set; }
+
 
 
     }
