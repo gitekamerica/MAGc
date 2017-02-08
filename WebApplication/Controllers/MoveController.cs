@@ -44,15 +44,11 @@ namespace WebApplication.Controllers
 
             if (ModelState.IsValid)
             {
-                MoveStorage movestorages = new MoveStorage { MoveNo = m.MoveNo,  MoveDescription = m.MoveDescription };
+                MoveStorage movestorages = new MoveStorage { MoveNo = m.MoveNo,  MoveDescription = m.MoveDescription, MoveDetails=m.MoveList };
                 repositorystorage.SaveMoveStorage(movestorages);
 
 
-                foreach (var i in m.MoveList)
-                {
-
-                    repositorydetails.SaveMoveDetails(i);
-                }
+            
 
                 status = true;
 

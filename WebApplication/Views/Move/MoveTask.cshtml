@@ -2,104 +2,283 @@
 @{
 }
 
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="invoice-title">
+                <div class="col-xs-6" ><h3>PRZESUNIĘCIE MAGAZYNOWE</h3></div>
+                <div  >
+                                                            <h5 class="pull-right">Przesunięcie NR #  
+                                                            <input type="text" id="MoveNo" />
+                                                              <br />
+                                                             <span class="error pull-right">Numer nadawany automatycznie </span>
+                                                              </h5>
+                  </div>
+            </div>
+            <hr>
+            <br />
+            <br />
+
+            <div class="row">
+                <div class="col-xs-6">
+
+                  
+                    <div style="width:90%; margin:0 auto" class="tablecontainer">
+                        <strong>Od kogo:</strong><a class="popup btn btn-primary" style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
+                        <br />
+                        <br />
+                        <br />
+
+                        Imie i Nazwisko<br>
+                        Stanowisko<br>
+
+                        </div>
+                    </div>
+                <div class="col-xs-6 text-right">
+                    <address>
+                        <strong>Do kogo:</strong> <button type="button" class="btn btn-primary" style="margin-left:10px; "><i class="fa fa-download"></i> Wyszukaj </button>  
+                        
+                        <br/>
+                        <br />
+                        <br />
+                       
+                        Imie i Nazwisko<br>
+                        Stanowisko<br>
+
+                    </address>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6" style="margin-top:30px;">
+                    <address>
+                        <strong>Data przekazania:</strong><br>
+                        <br />.........................................
+
+                    </address>
+                </div>
+                <div class="col-xs-6 text-right" style="margin-top:25px; margin-bottom:30px;">
+                    <address>
+                        <strong>Data wystawienia:</strong><br>
+                        March 7, 2014<br><br>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>dotyczy sprzetu</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><strong>Item</strong></td>
+                                    <td class="text-center"><strong>Price</strong></td>
+                                    <td class="text-center"><strong>Quantity</strong></td>
+                                    <td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td>BS-200</td>
+                                    <td class="text-center">$10.99</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-right">$10.99</td>
+                                </tr>
+                                <tr>
+                                    <td>BS-400</td>
+                                    <td class="text-center">$20.00</td>
+                                    <td class="text-center">3</td>
+                                    <td class="text-right">$60.00</td>
+                                </tr>
+                                <tr>
+                                    <td>BS-1000</td>
+                                    <td class="text-center">$600.00</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-right">$600.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="thick-line"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                    <td class="thick-line text-right">$670.99</td>
+                                </tr>
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line text-center"><strong>Shipping</strong></td>
+                                    <td class="no-line text-right">$15</td>
+                                </tr>
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line text-center"><strong>Total</strong></td>
+                                    <td class="no-line text-right">$685.99</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container" style="max-width:1200px">
     <div class="master">
-        <h4>Przesuniecie</h4>
 
-        <table>
-            <tr>
-                @*<td>MoveID</td>
-                    <td>
-                        <input type="text" id="MoveID" />
-                        <span class="error">Move required</span>
-                    </td>*@
+        <div class="panel-heading"><h2>PRZESUNIĘCIE MAGAZYNOWE</h2></div>
 
 
-                <td>MoveNo</td>
-                <td>
-                    <input type="text" id="MoveNo" />
-                    <span class="error">Valid date required</span>
-                </td>
+        <div class="col-md-6 red">
+            <div class="panel-heading">Numer Przesunięcia</div>
+            <div class="panel-body">
 
 
-
-                <td>MoveDate</td>
-                <td>
-                    <input type="text" id="MoveDate" />
-                    <span class="error">Valid date required</span>
-                </td>
-
-
-
-                <td>MoveDescription</td>
-                <td colspan="3">
-                    <textarea id="MoveDescription" style="width:100%"></textarea>
-                </td>
-            </tr>
-        </table>
-
-
-    </div>
-
-    <div class="details">
-        <h4>Order Items</h4>
-
-        <table width="100%">
-            <tr>
-                <td>ItemName</td>
-                <td>Quantity</td>
-                <td>Rate</td>
-                <td>&nbsp;</td>
-            </tr>
-
-
-            <tr>
-                <td>
-                    <input type="text" id="itemName" />
-                    <span class="error">Item name required</span>
-                </td>
-
-                <td>
-                    <input type="text" id="quantity" />
-                    <span class="error">Item quantity required</span>
-                </td>
-
-
-                <td>
-                    <input type="text" id="rate" />
-                    <span class="error">Item rate required</span>
-                </td>
-
-                <td>
-                    <input type="button" id="add" value="add" />
-
-                </td>
-
-
-            </tr>
-
-
-        </table>
-
-        <div id="orderItems" class="tablecontainer">
-
+                <input type="text" id="MoveNo" />
+                <span class="error">Numer nadawany automatycznie</span>
+            </div>
         </div>
 
 
-        <div style="padding:10px 0px; text-align:right">
-            <input id="submit" type="button" value="Save" style="padding:10px 20px" />
 
+        <div class="col-md-6 red">
+            <div class="panel-heading">Data Przesunięcia</div>
+            <div class="panel-body">
+
+
+                <input type="text" id="MoveNo" />
+                <span class="error">Numer nadawany automatycznie</span>
+            </div>
         </div>
 
+    </div>  
+</div>
+
+
+
+
+
+<table>
+    <tr>
+        @*<td>MoveID</td>
+            <td>
+                <input type="text" id="MoveID" />
+                <span class="error">Move required</span>
+            </td>*@
+
+
+        <td>MoveNo</td>
+        <td>
+            <input type="text" id="MoveNo" />
+            <span class="error">Valid date required</span>
+        </td>
+
+
+
+        <td>MoveDate</td>
+        <td>
+            <input type="text" id="MoveDate" />
+            <span class="error">Valid date required</span>
+        </td>
+
+
+
+        <td>MoveDescription</td>
+        <td colspan="3">
+            <textarea id="MoveDescription" style="width:100%"></textarea>
+        </td>
+    </tr>
+</table>
+
+
+
+<div class="details">
+    <h4>Order Items</h4>
+
+    <table width="100%">
+        <tr>
+            <td>ItemName</td>
+            <td>Quantity</td>
+            <td>Rate</td>
+            <td>&nbsp;</td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <input type="text" id="itemName" />
+                <span class="error">Item name required</span>
+            </td>
+
+            <td>
+                <input type="text" id="quantity" />
+                <span class="error">Item quantity required</span>
+            </td>
+
+
+            <td>
+                <input type="text" id="rate" />
+                <span class="error">Item rate required</span>
+            </td>
+
+            <td>
+                <input type="button" id="add" value="add" />
+
+            </td>
+
+
+        </tr>
+
+
+    </table>
+
+    <div id="orderItems" class="tablecontainer">
 
     </div>
 
 
+    <div style="padding:10px 0px; text-align:right">
+        <input id="submit" type="button" value="Save" style="padding:10px 20px" />
 
+    </div>
 
 
 </div>
+
+
+
+
+
 
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -109,11 +288,12 @@
 
     <script src="~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"></script>
 
+
     <script>
 
         $(function () {
             $('#MoveDate').datepicker({
-                dateFormat: 'mm-dd-yy'
+                dateFormat: 'yy-mm-dd'
             });
         })
 
@@ -143,18 +323,23 @@
                         //quantity: parseInt($('#quantity').val().trim()),
                         //rate: $('#rate').val().trim(),
                         //total: parseInt($('#quantity').val().trim())
-                    })};
+                    })
+                };
 
-                    //clear
-                     $('#itemName').val('').focus();
-                     $('#quantity', '#rate').val('')
+                //clear
+                $('#itemName').val('').focus();
+                $('#quantity', '#rate').val('')
 
-                    //pupulate orderItems
+                //pupulate orderItems
 
-                    GeneratedItemsTable();
+                GeneratedItemsTable();
 
 
-                });
+            });
+
+
+
+
 
 
             // Save buttton click function
@@ -177,11 +362,11 @@
                         MoveNo: $.trim($('#MoveNo').val()),
                         //  MoveDate: $('#MoveDate').val().trim(),
                         MoveDescription: $.trim($('#MoveDescription').val()),
-                       MoveList: orderItems
+                        MoveList: orderItems
                     };
-                  
 
-              
+
+
 
                 $.ajax({
                     url: "SaveMove",
@@ -197,7 +382,7 @@
                             orderItems = [];
                             $('#orderN0').val('');
 
-                      //      $('#orderDate').val('');
+                            //      $('#orderDate').val('');
 
                             $('#orderItems').empty();
 
@@ -219,6 +404,56 @@
 
 
             });
+
+
+            $('.tablecontainer').on('click', 'a.popup', function (e) {
+                e.preventDefault();
+                OpenPopup($(this).attr('href'));
+            })
+
+
+
+              function OpenPopup(pageUrl)
+                {
+                    var $pageContent = $('<div/>');
+
+                    $pageContent.load(pageUrl);
+
+                    $dialog = $('<div class="popupWindow" style="overflow:auto "></div>').html($pageContent).dialog({
+                        draggable: true,
+                        autoOpen: false,
+                        resizable: false,
+                        model: true,
+                        title: 'Popup dialog',
+                        height: 550,
+                        width: 600,
+                        close: function ()
+                        {
+                            $dialog.dialog('destroy').remove();
+                        }
+                    })
+
+
+                    $('.popupWindow').on('submit', '#popupForm', function (e) {
+
+                        var url = $('#popupForm')[0].action;
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: $('#popupForm').serialize(),
+                            success: function (data) {                    
+                                    $dialog.dialog('close');
+                                    oTable.ajax.reload();                    
+                            }         
+                        })
+
+                        e.preventDefault()
+                    })
+
+                    $dialog.dialog('open');
+                }
+
 
 
 

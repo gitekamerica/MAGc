@@ -15,6 +15,8 @@ namespace WebApplication.Entities
 
         public string ItemName { get; set; }
 
+        public virtual MoveStorage MoveStorage { get; set; }
+
         //public int Quantity { get; set; }
 
         //public string Rate { get; set; }

@@ -13,10 +13,12 @@ namespace WebApplication.Entities
 
         public string MoveNo { get; set; }
 
-        public DateTime MoveDate { get; set; }
+        public string MoveDate { get; set; }
 
         public string MoveDescription { get; set; }
-         
+
+        public virtual ICollection<MoveDetails> MoveDetails { get; set; }
+
 
     }
 }
