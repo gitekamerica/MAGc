@@ -37,6 +37,9 @@ namespace WebApplication.Infrastructure
 
             ninjectKernel.Bind<IMoveDetails>().To<EFMoveDetailsRepository>();
 
+            ninjectKernel.Bind<IPersonRepository>().To<EFPersonRepository>();
+
+
 
 
         }

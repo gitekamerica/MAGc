@@ -17,6 +17,9 @@ namespace WebApplication.Concrete
 
         public DbSet<MoveDetails> MoveDetails { get; set; }
 
+        public DbSet<Persons> Persons { get; set; }
+
+        
 
 
     }

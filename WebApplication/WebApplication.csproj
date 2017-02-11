@@ -181,6 +181,7 @@
     <Compile Include="Abstract\IEquipmentRepository.cs" />
     <Compile Include="Abstract\IMoveDetails.cs" />
     <Compile Include="Abstract\IMoveStorage.cs" />
+    <Compile Include="Abstract\IPersonRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Concrete\EFEquipmentRepository.cs" />
     <Compile Include="Concrete\EFMoveDetailsRepository.cs" />
     <Compile Include="Concrete\EFMoveStorageRepository.cs" />
+    <Compile Include="Concrete\EFPersonRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
@@ -205,10 +207,12 @@
     <Compile Include="Controllers\MailboxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoveController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Entities\MoveDetails.cs" />
     <Compile Include="Entities\MoveStorage.cs" />
+    <Compile Include="Entities\Persons.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Equipment.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
@@ -588,6 +592,8 @@
     <Content Include="Views\Equipment\EquipmentList.cshtml" />
     <Content Include="Views\Equipment\Save.cshtml" />
     <Content Include="Views\Move\MoveTask.cshtml" />
+    <Content Include="Views\Person\SaveFROM.cshtml" />
+    <Content Include="Views\Person\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

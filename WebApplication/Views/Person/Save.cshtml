@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Save", "Person", FormMethod.Post, new { id = "popupForm" }))
+{
+
+@Html.Label("Enter Your name")
+@Html.TextBox("PassId")
+
+
+<div id="VisitorDetail">
+    <label>Id</label><div id="Id"></div>
+    <label>Name</label><div id="Name"></div>
+    <label>Mobile</label><div id="Mobile"></div>
+</div>
+
+
+<div>
+    <input type="submit" value="Save" />
+</div>
+
+}

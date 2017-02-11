@@ -23,18 +23,20 @@
             <br />
             <br />
 
+     
             <div class="row">
                 <div class="col-xs-6">
 
                   
                     <div style="width:90%; margin:0 auto" class="tablecontainer">
-                        <strong>Od kogo:</strong><a class="popup btn btn-primary" style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
+                        <strong>Od kogo:</strong><a class="popup btn btn-primary" href="/Person/Save"  style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
+                       
                         <br />
                         <br />
                         <br />
-
-                        Imie i Nazwisko<br>
-                        Stanowisko<br>
+                        <div id="odkogo">
+                            
+                        </div>
 
                         </div>
                     </div>
@@ -278,7 +280,7 @@
 
 
 
-
+<input type="text" id="PassId" />
 
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -298,6 +300,10 @@
         })
 
         $(document).ready(function () {
+
+
+ 
+
 
             var orderItems = [];
 
@@ -412,12 +418,20 @@
             })
 
 
+          
+
+
+
 
               function OpenPopup(pageUrl)
                 {
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
+
+
+
+
 
                     $dialog = $('<div class="popupWindow" style="overflow:auto "></div>').html($pageContent).dialog({
                         draggable: true,
@@ -427,33 +441,101 @@
                         title: 'Popup dialog',
                         height: 550,
                         width: 600,
-                        close: function ()
-                        {
+                        close: function () {
                             $dialog.dialog('destroy').remove();
                         }
-                    })
+
+                    });
+
+              
+                
+
+                    $(".popupWindow").on('input', '#PassId', function () {
+
+                        $(this).autocomplete({
+                            source: function (request, response) {
+                                var customer = new Array();
+                                $.ajax({
+                                    async: false,
+                                    cache: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("Autocomplete", "Person"))",
+                                    data: { "term": request.term },
+                                success: function (data) {
+                                    for (var i = 0; i < data.length ; i++) {
+                                        customer[i] = { label: data[i].Value, Id: data[i].Key };
+                                    }
+                                }
+                            });
+                        response(customer);
+                    },
+                        select: function (event, ui) {
+                            //fill selected customer details on form
+                            $.ajax({
+                                cache: false,
+                                async: false,
+                                type: "POST",
+                                url: "@(Url.Action("GetDetail", "Person"))",
+                                data: { "id": ui.item.Id },
+
+                            success: function (data) {
+                                $('#VisitorDetail').show();
+                                $("#Id").html(data.id)
+                                $("#Name").html(data.name)
+                                $("#Mobile").html(data.mobile)
+                                action = data.Action;
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert('Failed to retrieve states.');
+                            }
+                        });
+                }
+        });
+
+
+
+                    });
+
+                       
+
+
 
 
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
 
                         var url = $('#popupForm')[0].action;
 
-                        $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: $('#popupForm').serialize(),
-                            success: function (data) {                    
-                                    $dialog.dialog('close');
-                                    oTable.ajax.reload();                    
-                            }         
-                        })
+
+                        
+                        $('#odkogo').text($("#Id").text()).append("</br>").append($("#Name").text()).append("</br>").append(
+                        $("#Mobile").text());
+
+
+
+                        $dialog.dialog('close');
+
+
 
                         e.preventDefault()
                     })
 
+
+
                     $dialog.dialog('open');
+
+
+
+
+
+
+
+
+
                 }
 
+
+
+       
 
 
 
@@ -483,7 +565,24 @@
             }
 
 
+
+            
+            
+
+            
+
+
+
         })
+
+
+       
+
+
+
+
+
+
 
 
     </script>
