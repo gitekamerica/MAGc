@@ -13,14 +13,20 @@ namespace WebApplication.Controllers
     {
 
         private IMoveStorage repositorystorage;
-
         private IMoveDetails repositorydetails;
+        private IEquipmentRepository repositoryequipment;
+        private IPersonRepository repositoryperson;
 
-        public MoveController(IMoveStorage moveRepository, IMoveDetails detailsrepository)
+
+        public MoveController(IMoveStorage moveRepository, IMoveDetails detailsrepository, IEquipmentRepository repositoryeq, IPersonRepository personRepository)
         {
+            this.repositoryequipment = repositoryeq;
+
             this.repositorystorage = moveRepository;
 
             this.repositorydetails = detailsrepository;
+            this.repositoryperson = personRepository;
+
 
         }
 
@@ -30,8 +36,15 @@ namespace WebApplication.Controllers
         // GET: Move
         public ActionResult MoveTask()
         {
-            return View();
+            IEnumerable<Equipment> equipments = repositoryequipment.Equipments;
+
+
+
+
+            return View(equipments);
         }
+
+     
 
 
         // post save 

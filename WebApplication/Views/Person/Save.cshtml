@@ -1,26 +1,53 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Wyszukaj użytkownika";
 }
 
 
-<h2>Index</h2>
+<h2>Wyszukaj: OD KOGO:</h2>
+<br />
 
 @using (Html.BeginForm("Save", "Person", FormMethod.Post, new { id = "popupForm" }))
 {
 
-@Html.Label("Enter Your name")
-@Html.TextBox("PassId")
+@Html.Label("Nazwisko i imie")
 
 
-<div id="VisitorDetail">
-    <label>Id</label><div id="Id"></div>
-    <label>Name</label><div id="Name"></div>
-    <label>Mobile</label><div id="Mobile"></div>
+    @Html.TextBox("PassId", null, new { style = " margin-left:20px;  width: 250px; " })
+
+
+
+    <div class="table-responsive" style="margin-top:40px;">
+        <table class="table" id="VisitorDetail">
+            <tbody>
+                <tr>
+                    <th style="width: 20%">ID:</th>
+                    <td div id="Id"></td>
+                </tr>
+                <tr>
+                    <th>Imie</th>
+                    <td id="Name"></td>
+                </tr>
+                <tr>
+                    <th>telefon:</th>
+                    <td id="Mobile"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+<div align="right">
+    <input    type="submit" class= "btn btn-danger pull-right" style="margin-top:40px; margin-left:40px; margin-right:40px;"  value="Zapisz" />
 </div>
 
 
-<div>
-    <input type="submit" value="Save" />
-</div>
+
+
 
 }
+
+
+

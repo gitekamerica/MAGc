@@ -1,30 +1,44 @@
 ﻿@model WebApplication.Entities.Equipment
 
 
-@using (Html.BeginForm("Save", "Equipment", FormMethod.Post, new { id="popupForm"}))
+
+
+
+
+
+
+@using (Html.BeginForm("Save", "Equipment", FormMethod.Post, new { id = "popupForm" }))
 {
-    if (Model!=null && Model.ID_equipment>0 )
+ 
+    if (Model != null && Model.ID_equipment > 0)
     {
 
         @Html.HiddenFor(a=>a.ID_equipment)
 
-            }
-
-   
-
-    <div class="form-group">
-        <label>equipmentName</label>
-        @Html.TextBoxFor(a => a.EquipementName, new { @class = "form-control" })
-    </div>
+    }
 
 
     <div class="form-group">
-        <label>equipmentDescription</label>
-        @Html.TextBoxFor(a => a.EquipmentDescription, new { @class = "form-control" })
-    </div>
+        <label>Wybierz kategorię</label>
+        @Html.DropDownListFor(   x => x.Category, (IEnumerable<SelectListItem>)ViewBag.Testowy, new { @class = "form-control" })
 
-    <div>
-        <input type="submit" value="Save" />
-    </div>
 
-}
+        </div>
+
+        <div class="form-group" >
+            <label>Nazwa sprzętu</label>
+            @Html.TextBoxFor(a => a.EquipementName,  new { @class = "form-control", id = "nazwas" })
+        </div>
+
+
+        <div class="form-group">
+            <label>Opis</label>
+            @Html.TextBoxFor(a => a.EquipmentDescription, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+
+        }
+

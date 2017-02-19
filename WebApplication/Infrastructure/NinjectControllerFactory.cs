@@ -39,6 +39,8 @@ namespace WebApplication.Infrastructure
 
             ninjectKernel.Bind<IPersonRepository>().To<EFPersonRepository>();
 
+            ninjectKernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
+
 
 
 

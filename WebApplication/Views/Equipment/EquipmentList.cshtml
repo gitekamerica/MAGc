@@ -1,10 +1,6 @@
-﻿
-
-<link href="~/AdminLTE/plugins/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+﻿<link href="~/AdminLTE/plugins/datatables/css/jquery.dataTables.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
-
-
+<link href="~/AdminLTE/dist/css/admin-lte.css" rel="stylesheet" />
 
 
 <div style="width:90%; margin:0 auto" class="tablecontainer">
@@ -14,6 +10,7 @@
             <tr>               
                 <th>Nazwa sprzętu</th>
                 <th>Opis sprzętu</th>
+                <th>Kategoria</th>
                 <th>Wykonaj</th>
             </tr>
         </thead>
@@ -29,12 +26,22 @@
 
 <script src="~/AdminLTE/plugins/datatables/js/jquery.dataTables.js"></script>
 <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/adminlte/plugins/jquery-validate/js/jquery.validate.min.js"></script>
+<script src="~/adminlte/plugins/jquery-validate/js/jquery.validate.unobtrusive.min.js"></script>
+
+
 
     <script>
 
         $(document).ready(
+
+
+
             function () {
                 var oTable = $('#myDatatable').DataTable({
+                    
+
+
                     "ajax":
                       {
                           "url": '/Equipment/GetEquipment',
@@ -44,9 +51,15 @@
                     "columns":
                         [
                         { "data": "EquipementName", "autoWidth": true, "title": "Nazwa sprzętu" },
+
                         { "data": "EquipmentDescription", "autoWidth": true },
+
+                        { "data": "CategoryName", "autoWidth": true },
+
+
                         { "data": "ID_equipment", "width": "50px", "render": function (data) { return '<a class="popup" href="/Equipment/Save/' + data + '">Edycja</a>' } }
-                        ]
+                        ],
+                    "pageLength": 25
                 })
 
 
@@ -54,16 +67,21 @@
                     e.preventDefault();
                     OpenPopup($(this).attr('href'));
                 })
-                
 
 
-                function OpenPopup(pageUrl)
-                {
+
+                function OpenPopup(pageUrl) {
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
 
-                    $dialog = $('<div class="popupWindow" style="overflow:auto "></div>').html($pageContent).dialog({
+    
+
+
+
+                    $dialog = $('<div class="popupWindow" style="overflow:auto" ></div>').html($pageContent).dialog({
+
+                        
                         draggable: true,
                         autoOpen: false,
                         resizable: false,
@@ -71,8 +89,8 @@
                         title: 'Popup dialog',
                         height: 550,
                         width: 600,
-                        close: function ()
-                        {
+                        
+                        close: function () {
                             $dialog.dialog('destroy').remove();
                         }
                     })
@@ -80,17 +98,28 @@
 
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
 
-                        var url = $('#popupForm')[0].action;
+                        if ($('#nazwas').val() == '')
+                        {
+                            $('#nazwas').addClass("form-control1");
 
-                        $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: $('#popupForm').serialize(),
-                            success: function (data) {                    
+
+
+                        }
+                        else
+                        {
+                            
+                            var url = $('#popupForm')[0].action;
+
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: $('#popupForm').serialize(),
+                                success: function (data) {
                                     $dialog.dialog('close');
-                                    oTable.ajax.reload();                    
-                            }         
-                        })
+                                    oTable.ajax.reload();
+                                }
+                            })
+                        }
 
                         e.preventDefault()
                     })
@@ -98,8 +127,15 @@
                     $dialog.dialog('open');
                 }
 
-            })
-
+            });
 
     </script>
 }
+<style>
+  
+     .form-control1 {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: red;
+     }
+</style>

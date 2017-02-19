@@ -12,37 +12,58 @@ namespace WebApplication.Controllers
     {
 
         private IEquipmentRepository repository;
+        private IPersonRepository repositoryperson;
+        private ICategoryRepository repositorycategory;
 
-        public EquipmentController (IEquipmentRepository equipmentRepository)
+
+
+        public EquipmentController (IEquipmentRepository equipmentRepository, IPersonRepository personRepository, ICategoryRepository repositorycategory)
         {
             this.repository = equipmentRepository;
+            this.repositoryperson = personRepository;
+            this.repositorycategory = repositorycategory;
         }
-
-
-
 
         // GET: Equipment
         public ActionResult EquipmentList()
         {
-
             return  View();
         }
 
-
         public ActionResult GetEquipment()
         {
-            var equipments = repository.Equipments.OrderBy(x => x.EquipementName).ToList();
-
+            var equipments = (from x in repository.Equipments.AsEnumerable()
+                             join y in repositorycategory.Categorys.AsEnumerable()
+                             on x.Category equals y.id_category
+                             select new { ID_equipment = x.ID_equipment, EquipementName = x.EquipementName, EquipmentDescription = x.EquipmentDescription, CategoryName = y.categoryName                      
+              } ).ToList();
             return Json(new { data = equipments }, JsonRequestBehavior.AllowGet);
         }
 
 
-
+        //Save or Edit EquipmentName
         [HttpGet]
         public ActionResult Save(int id)
         {
-            var v = repository.Equipments.Where(a => a.ID_equipment == id).FirstOrDefault();
-            return PartialView(v);
+     
+            var viewedit = repository.Equipments.Where(a => a.ID_equipment == id).FirstOrDefault();
+
+
+            var categorie = repositorycategory.Categorys.Select(c => new SelectListItem()
+            {
+                Text = c.categoryName,
+                Value = c.id_category.ToString()
+            
+            });
+
+
+
+            ViewBag.Testowy = categorie;
+            
+
+
+
+            return PartialView(viewedit);
         }
 
 
@@ -51,15 +72,29 @@ namespace WebApplication.Controllers
         {
             bool status = false;
 
+           //equ.Category= Int32.Parse(Request["Testowy"]);
+
+
             if (ModelState.IsValid)
             {
                 repository.SaveEquipment(equ);
                 status = true;
             }
+            else
+            { 
+                // błąd kontroli poprawności, więc ponownie wyświetlamy formularz wprowadzania danych
+                return View();
+            }
 
             return new JsonResult { Data = new { staus = status } };
 
         }
+
+
+
+
+
+
 
     }
 }

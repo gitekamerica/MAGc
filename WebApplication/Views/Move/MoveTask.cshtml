@@ -1,4 +1,6 @@
 ﻿
+@model IEnumerable<WebApplication.Entities.Equipment>
+
 @{
 }
 
@@ -7,47 +9,49 @@
 
 
 <div class="container">
+
+
+    <!--  tytyl || od kogo || do kogo -->
     <div class="row">
         <div class="col-xs-12">
             <div class="invoice-title">
-                <div class="col-xs-6" ><h3>PRZESUNIĘCIE MAGAZYNOWE</h3></div>
-                <div  >
-                                                            <h5 class="pull-right">Przesunięcie NR #  
-                                                            <input type="text" id="MoveNo" />
-                                                              <br />
-                                                             <span class="error pull-right">Numer nadawany automatycznie </span>
-                                                              </h5>
-                  </div>
+                <div class="col-xs-6"><h3>PRZESUNIĘCIE MAGAZYNOWE</h3></div>
+                <div>
+                    <h5 class="pull-right">
+                        Przesunięcie NR #
+                        <input type="text" id="MoveNo" />
+                        <br />
+                        <span class="error pull-right">Numer nadawany automatycznie </span>
+                    </h5>
+                </div>
             </div>
             <hr>
             <br />
             <br />
 
-     
+
             <div class="row">
                 <div class="col-xs-6">
-
-                  
                     <div style="width:90%; margin:0 auto" class="tablecontainer">
-                        <strong>Od kogo:</strong><a class="popup btn btn-primary" href="/Person/Save"  style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
-                       
+                        <strong>Od kogo:</strong><a class="popup btn btn-primary" href="/Person/Save" style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
+
                         <br />
                         <br />
                         <br />
                         <div id="odkogo">
-                            
-                        </div>
 
                         </div>
+
                     </div>
+                </div>
                 <div class="col-xs-6 text-right">
                     <address>
-                        <strong>Do kogo:</strong> <button type="button" class="btn btn-primary" style="margin-left:10px; "><i class="fa fa-download"></i> Wyszukaj </button>  
-                        
-                        <br/>
+                        <strong>Do kogo:</strong> <button type="button" class="btn btn-primary" style="margin-left:10px; "><i class="fa fa-download"></i> Wyszukaj </button>
+
                         <br />
                         <br />
-                       
+                        <br />
+
                         Imie i Nazwisko<br>
                         Stanowisko<br>
 
@@ -72,364 +76,216 @@
         </div>
     </div>
 
+
+
+    @*<div id="modalSpinner">
+            <img id="loader" src="~/Content/images/477.GIF" />
+        </div>*@
+    @**************************@
+
+
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><strong>dotyczy sprzetu</strong></h3>
+
+
+        <!--Main table-->
+        <div id="MainDiv" class="col-md-8">
+            <div class="box box-danger box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <td><strong>Item</strong></td>
-                                    <td class="text-center"><strong>Price</strong></td>
-                                    <td class="text-center"><strong>Quantity</strong></td>
-                                    <td class="text-right"><strong>Totals</strong></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                <tr>
-                                    <td>BS-200</td>
-                                    <td class="text-center">$10.99</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right">$10.99</td>
-                                </tr>
-                                <tr>
-                                    <td>BS-400</td>
-                                    <td class="text-center">$20.00</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-right">$60.00</td>
-                                </tr>
-                                <tr>
-                                    <td>BS-1000</td>
-                                    <td class="text-center">$600.00</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right">$600.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="thick-line"></td>
-                                    <td class="thick-line"></td>
-                                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                    <td class="thick-line text-right">$670.99</td>
-                                </tr>
-                                <tr>
-                                    <td class="no-line"></td>
-                                    <td class="no-line"></td>
-                                    <td class="no-line text-center"><strong>Shipping</strong></td>
-                                    <td class="no-line text-right">$15</td>
-                                </tr>
-                                <tr>
-                                    <td class="no-line"></td>
-                                    <td class="no-line"></td>
-                                    <td class="no-line text-center"><strong>Total</strong></td>
-                                    <td class="no-line text-right">$685.99</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                            <table class="table table-striped table-hover" id="maintable">
+                                <thead>
+                                    <tr style="background-color:#3d566e; color:#ecf0f1">
+                                        <th>
+                                            ID_equipment
+                                        </th>
+                                        <th>
+                                            EquipementName
+                                        </th>
+                                        <th>
+                                            EquipmentDescription
+                                        </th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="rows">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ID_equipment)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EquipementName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EquipmentDescription)
+                                        </td>
+
+                                    </tr>
+                                }
+                            </table>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="col-sm-4 ">
+            <div class="box box-danger box-body" style="height:400px ; ">
+                <!-- Begin of Form to be serialized  -->
+                <form id="formSerialized">
+
+                 <!-- boczna tabelka-->    
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12" style="">
+                                    <h4 style=" align-content:center">&nbsp;<span class="glyphicon glyphicon-list"></span> &nbsp; &nbsp; Sales Items</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="height:350px; overflow:scroll ">
+                                    <table class="table table-condensed table-striped">
+                                        <thead>
+                                            <tr>
+
+                                                <th>ID</th>
+                                                <th>Nazwa</th>
+                                                <th>Opis</th>
+
+                                                <th><span class="glyphicon glyphicon-trash"></span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblAppendHere"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="row footer" id="btnModalTrigger">
+                                <div class="col-md-12">
+                                    <button data-toggle="modal" class="btn-block" data-target="#myModal" style="background-color:#16a085; cursor:pointer">
+                                        <h4 style="color:#ffffff; text-align:center;"> NEXT &nbsp;<span class="glyphicon glyphicon-forward"></span> &nbsp; &nbsp; </h4>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal podsumowanie -->
+                    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#c0392b; color:white;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Potwierdzenie przeniesienia sprzetu</h4>
+                                </div>
+                                <div class="modal-body" style="margin:auto">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <td style="width: 10px;" align="left"><b>OD KOGO</b></td>
+                                            <td style="width: 90px;"><div id="odkogop"></div> </td>
+
+                                            <td style="width: 10px;" align="left"><b>DO KOGO</b></td>
+                                            <td style="width: 90px;"><div id="dokogop"></div> </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Nazwa</th>
+                                                        <th>Opis</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl1"></tbody>
+
+                                            </table>
+
+
+                                        </tr>
 
 
 
+                                        <tr>
+                                            <td>Discount %</td>
+                                            <td>
+                                                <textarea class="form-control" id="discountPercent1" rows="3" required></textarea>
+                                            </td>
 
+                                        </tr>
+                                        <tr>
+                                            <td>Discount amt</td>
+                                            <td><input type="text" name="Discount" class="form-control " id="discountAmount" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Payable</td>
+                                            <td><input type="text" name="GrandTotal" class="form-control " id="grandTotal" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Paid</td>
+                                            <td><input type="text" tabindex="4" class="form-control NumbersAndDecimal" id="receivedAmt" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Change</td>
+                                            <td><input type="text" readonly class="form-control " id="returnAmt" /></td>
+                                        </tr>
 
+                                    </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container" style="max-width:1200px">
-    <div class="master">
-
-        <div class="panel-heading"><h2>PRZESUNIĘCIE MAGAZYNOWE</h2></div>
-
-
-        <div class="col-md-6 red">
-            <div class="panel-heading">Numer Przesunięcia</div>
-            <div class="panel-body">
-
-
-                <input type="text" id="MoveNo" />
-                <span class="error">Numer nadawany automatycznie</span>
+                                </div>
+                                <div class="modal-footer" style="padding:3px;background-color:#16a085; cursor:pointer" tabindex="5" id="btnCheckOut">
+                                    <h4 style="color:#ffffff; text-align:center"> Done &nbsp;<span class="glyphicon glyphicon-check glyphicon-align-right"></span> &nbsp; &nbsp; </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of form to be serialized-->
+                </form>
             </div>
+
         </div>
 
-
-
-        <div class="col-md-6 red">
-            <div class="panel-heading">Data Przesunięcia</div>
-            <div class="panel-body">
-
-
-                <input type="text" id="MoveNo" />
-                <span class="error">Numer nadawany automatycznie</span>
-            </div>
-        </div>
-
-    </div>  
-</div>
-
-
-
-
-
-<table>
-    <tr>
-        @*<td>MoveID</td>
-            <td>
-                <input type="text" id="MoveID" />
-                <span class="error">Move required</span>
-            </td>*@
-
-
-        <td>MoveNo</td>
-        <td>
-            <input type="text" id="MoveNo" />
-            <span class="error">Valid date required</span>
-        </td>
-
-
-
-        <td>MoveDate</td>
-        <td>
-            <input type="text" id="MoveDate" />
-            <span class="error">Valid date required</span>
-        </td>
-
-
-
-        <td>MoveDescription</td>
-        <td colspan="3">
-            <textarea id="MoveDescription" style="width:100%"></textarea>
-        </td>
-    </tr>
-</table>
-
-
-
-<div class="details">
-    <h4>Order Items</h4>
-
-    <table width="100%">
-        <tr>
-            <td>ItemName</td>
-            <td>Quantity</td>
-            <td>Rate</td>
-            <td>&nbsp;</td>
-        </tr>
-
-
-        <tr>
-            <td>
-                <input type="text" id="itemName" />
-                <span class="error">Item name required</span>
-            </td>
-
-            <td>
-                <input type="text" id="quantity" />
-                <span class="error">Item quantity required</span>
-            </td>
-
-
-            <td>
-                <input type="text" id="rate" />
-                <span class="error">Item rate required</span>
-            </td>
-
-            <td>
-                <input type="button" id="add" value="add" />
-
-            </td>
-
-
-        </tr>
-
-
-    </table>
-
-    <div id="orderItems" class="tablecontainer">
-
+    </div>
     </div>
 
 
-    <div style="padding:10px 0px; text-align:right">
-        <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/AdminLTE/plugins/datatables/css/jquery.dataTables.css" rel="stylesheet" />
 
-    </div>
 
+    @section Scripts {
+        <script src="~/AdminLTE/plugins/datatables/js/jquery.dataTables.js"></script>
+        <script src="~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"></script>
 
-</div>
 
+        <script>
 
 
+            $(document).ready(function () {
 
-<input type="text" id="PassId" />
+                // Obsługa przycisku od kogo
+                $('.tablecontainer').on('click', 'a.popup', function (e) {
+                    e.preventDefault();
+                    OpenPopup($(this).attr('href'));
+                })
 
 
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
-
-@section Scripts {
-
-    <script src="~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"></script>
-
-
-    <script>
-
-        $(function () {
-            $('#MoveDate').datepicker({
-                dateFormat: 'yy-mm-dd'
-            });
-        })
-
-        $(document).ready(function () {
-
-
- 
-
-
-            var orderItems = [];
-
-            //Add button click function
-            ///////////////////////////
-            $('#add').click(function () {
-
-                var IsValidItem = true;
-
-                //if ($('#itemName').val().trim() == '')
-                //{
-                //    IsValidItem = false;
-                //    $('#itemName').siblings('span.error').css('visibility', 'visible');
-                //}
-                //else {
-                //    $('#itemName').siblings('span.error').css('visibility', 'hidden');
-                //}
-
-
-                if (IsValidItem) {
-                    orderItems.push({
-                        itemName: $("#itemName").val().trim()
-                        //quantity: parseInt($('#quantity').val().trim()),
-                        //rate: $('#rate').val().trim(),
-                        //total: parseInt($('#quantity').val().trim())
-                    })
-                };
-
-                //clear
-                $('#itemName').val('').focus();
-                $('#quantity', '#rate').val('')
-
-                //pupulate orderItems
-
-                GeneratedItemsTable();
-
-
-            });
-
-
-
-
-
-
-            // Save buttton click function
-            //////////////////////////////
-            $('#submit').click(function () {
-                //validation of order
-
-                var isAllValid = true;
-
-                if (orderItems.length == 0) {
-
-                    $('#orderItems').html('<span style="color:red;">Please add order items</sdxxpan>');
-                    isAllValid = true;
-                }
-
-
-
-                var datareq =
-                    {
-                        MoveNo: $.trim($('#MoveNo').val()),
-                        //  MoveDate: $('#MoveDate').val().trim(),
-                        MoveDescription: $.trim($('#MoveDescription').val()),
-                        MoveList: orderItems
-                    };
-
-
-
-
-                $.ajax({
-                    url: "SaveMove",
-                    type: "POST",
-                    data: JSON.stringify(datareq),
-                    dataType: "JSON",
-                    contentType: "application/json",
-                    success: function (d) {
-
-                        if (d.status == true) {
-                            alert("Zapisane");
-
-                            orderItems = [];
-                            $('#orderN0').val('');
-
-                            //      $('#orderDate').val('');
-
-                            $('#orderItems').empty();
-
-
-
-                        }
-
-                        else { alert('faild'); }
-
-
-                    },
-                    error: function () { alert('error') }
-
-
-
-                });
-
-
-
-
-            });
-
-
-            $('.tablecontainer').on('click', 'a.popup', function (e) {
-                e.preventDefault();
-                OpenPopup($(this).attr('href'));
-            })
-
-
-          
-
-
-
-
-              function OpenPopup(pageUrl)
-                {
+                // tworzenie popup
+                function OpenPopup(pageUrl) {
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
-
-
 
 
 
@@ -444,12 +300,11 @@
                         close: function () {
                             $dialog.dialog('destroy').remove();
                         }
-
                     });
 
-              
-                
 
+
+                    // obsługa przycisku autocomplte
                     $(".popupWindow").on('input', '#PassId', function () {
 
                         $(this).autocomplete({
@@ -461,131 +316,306 @@
                                     type: "POST",
                                     url: "@(Url.Action("Autocomplete", "Person"))",
                                     data: { "term": request.term },
-                                success: function (data) {
-                                    for (var i = 0; i < data.length ; i++) {
-                                        customer[i] = { label: data[i].Value, Id: data[i].Key };
+                                    success: function (data) {
+                                        for (var i = 0; i < data.length ; i++) {
+                                            customer[i] = { label: data[i].Value, Id: data[i].Key };
+                                        }
                                     }
-                                }
-                            });
-                        response(customer);
-                    },
-                        select: function (event, ui) {
-                            //fill selected customer details on form
-                            $.ajax({
-                                cache: false,
-                                async: false,
-                                type: "POST",
-                                url: "@(Url.Action("GetDetail", "Person"))",
-                                data: { "id": ui.item.Id },
-
-                            success: function (data) {
-                                $('#VisitorDetail').show();
-                                $("#Id").html(data.id)
-                                $("#Name").html(data.name)
-                                $("#Mobile").html(data.mobile)
-                                action = data.Action;
+                                });
+                                response(customer);
                             },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                alert('Failed to retrieve states.');
+                            select: function (event, ui) {
+                                //fill selected customer details on form
+                                $.ajax({
+                                    cache: false,
+                                    async: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("GetDetail", "Person"))",
+                                    data: { "id": ui.item.Id },
+
+                                    success: function (data) {
+                                        $('#VisitorDetail').show();
+                                        $("#Id").html(data.id)
+                                        $("#Name").html(data.name)
+                                        $("#Mobile").html(data.mobile)
+                                        action = data.Action;
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert('Failed to retrieve states.');
+                                    }
+                                });
                             }
                         });
-                }
-        });
-
-
 
                     });
-
-                       
-
 
 
 
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
 
                         var url = $('#popupForm')[0].action;
-
-
-                        
                         $('#odkogo').text($("#Id").text()).append("</br>").append($("#Name").text()).append("</br>").append(
                         $("#Mobile").text());
 
-
-
                         $dialog.dialog('close');
-
-
 
                         e.preventDefault()
                     })
 
-
-
                     $dialog.dialog('open');
 
 
+                }
+
+
+        
+
+                //loading jquery datatable
+                $('#maintable').DataTable({
+                    "paging": true,
+                    "ordering": true,
+                    "info": true
+                });
 
 
 
+                //On clicking table row
+                document.getElementById('maintable').onclick = function (event) {
+                    event = event || window.event;
+                    var target = event.target || event.srcElement;
+                    while (target && target.nodeName != 'TR') {
+                        target = target.parentElement;
+                    }
+                    var cells = target.cells;
+                    if (!cells.length || target.parentNode.nodeName == 'THEAD') {
+                        return;
+                    }
 
+
+                    var $table = $('#tblAppendHere');
+                    $table.append(
+                        '<tr class="dynamicRows">' +
+                        //gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
+
+                         '<td>' + cells[0].innerHTML + '</td>' +
+
+                        '<td><input type="hidden" name="Qty"     value="' + cells[1].innerHTML + '"  style="width:60px;"/>' + cells[1].innerHTML + '</td>' +
+                        '<td><input type="hidden" name="Rate"    value= "' + cells[2].innerHTML + '"/>' + cells[2].innerHTML + '</td>' +
+
+                        //remove icon
+                           '<td><a href="#"  class="glyphicon glyphicon-remove" onclick="removeItem(this);"></a></td>' + '</tr>'
+                        );
 
 
 
                 }
 
 
+                //function update_total() {
+                //    var rows = $('.dynamicRows');
+                //    //var total = Number();
 
-       
+                //    $.each(rows, function (index, item) {
+                //        total += Number($(this).children('td').eq(4).text());
+                //    });
+
+
+                //};
 
 
 
-            //function for show added items in table
-            ////////////////////////////////////////
-            function GeneratedItemsTable() {
+                //populates RHS list
+                $('#btnAdd').on('click', function () {
+                    //Validation : Check if salesID and Qty is null
+                    if ($('#getQty').val() == '' || $('#getStockID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
+                        sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
+                        //alert();
+                    }
+                    else {
+                        //check for duplication
+                        if (CheckStockDuplication($('#getStockID').val())) {
+                            sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
 
-                if (orderItems.length > 0) {
+                        }
+                        else {
+                            var $table = $('#tblAppendHere');
+                            $table.append(
+                                '<tr class="dynamicRows">' +
+                                //gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
+                                '<td>' + $('#getStockID').val() + '</td>' +
+                                '<td><input type="hidden" class="txtStockID" name="StockID"  value= "' + $('#getStockID').val() + '"/>' + $('#getItem').val() + '</td>' +
+                                '<td><input type="hidden" name="Qty"     value="' + $('#getQty').val() + '"  style="width:60px;"/>' + $('#getQty').val() + '</td>' +
+                                '<td><input type="hidden" name="Rate"    value= "' + $('#getRate').val() + '"/>' + $('#getRate').val() + '</td>' +
+                                '<td><input type="hidden" name="Amount" value="' + $('#getAmount').val() + '"  class="subAmt"/>' + $('#getAmount').val() + '</td>' +
+                                //remove icon
+                                '<td><a href="#" class="glyphicon glyphicon-remove" onclick="removeItem(this)"></a></td>'
+                                + '</tr>'
+                                );
 
-                    var $table = $('<table/>');
-                    $table.append('<thead><tr><th>Item</th><th>Quanityty</th><th>Rate</th><th>Total</th></tr></thead>');
-                    var $tbody = $('<tbody/>');
 
-                    $.each(orderItems, function (i, val) {
-                        var $row = $('<tr/>');
-                        $row.append($('<td/>').html(val.itemName));
-                        $row.append($('<td/>').html(val.quantity));
-                        $row.append($('<td/>').html(val.rate));
-                        $row.append($('<td/>').html(val.total));
-                        $tbody.append($row);
+                            //calculate sub total
+                            update_total();
+                            return false;
+                        }
+                    }
+                });
+
+                //check if stock ID already exists in the list
+                function CheckStockDuplication(stockid) {
+                    var flag = false;
+                    $('.dynamicRows').each(function () {
+                        if ($(this).find('.txtStockID').val() == stockid) {
+                            flag = true;
+                        }
                     });
+                    return flag;
+                };
 
-                    $table.append($tbody);
-                    $('#orderItems').html($table);
 
-                }
+
+                //calculate sub total amount
+                function update_total() {
+                    var rows = $('.dynamicRows');
+                    var total = Number();
+
+                    $.each(rows, function (index, item) {
+                        total += Number($(this).children('td').eq(4).text());
+                    });
+                    $('.setTotal').val(total.toFixed(2));
+                    $('.setTotalText').text(total.toFixed(2));
+                };
+
+                //on clicking Next button
+                $('#btnModalTrigger').click(function () {
+
+                    var $odkog = $('#odkogo').clone();
+                    $('#odkogop').html($odkog);
+
+                    //tblAppendHere
+
+
+                    var $dokog1 = $('#odkogo').clone();
+                    $('#dokogop').html($dokog1);
+
+
+                    var $tbl = $("#tblAppendHere").clone();
+
+
+                    alert($tbl.html());
+
+                    //  $('#tbl1').html($tbl);
+
+                    $('#grandTotal').val('');
+                    $('#receivedAmt').val('');
+                    $('#returnAmt').val('');
+                });
+
+                //focuses cursor on discount txtbox on modal load
+                $('#myModal').on('shown.bs.modal', function () {
+                    $('#discountPercent').focus();
+                })
+
+                //Calculate Discount
+                $('#discountPercent').keyup(function () {
+                    var Odkogop = $('#odkogo').val();
+                    var percent = Number($('#discountPercent').val());
+                    var discountAmount = ((percent / 100) * total).toFixed(2);
+                    var grandTotal = total - discountAmount;
+                    $('#discountAmount').val(discountAmount);
+                    $('#grandTotal').val(grandTotal.toFixed(2));
+                });
+
+                //calculate return amount
+                $('#receivedAmt').keyup(function () {
+                    var grandTotal = Number($('#grandTotal').val());
+                    var received = Number($('#receivedAmt').val());
+                    var returnAmt = (received - grandTotal).toFixed(2);
+                    $('#returnAmt').val(returnAmt);
+                });
+
+
+
+                //removes record on clicking remove icon
+                function removeItem(obj) {
+                    $(obj).parent().parent().remove();
+                    //updatae total amount
+                    update_total();
+                };
+
+                //on clicking checkout button
+                $('#btnCheckOut').on('click', function () {
+                    $('#btnCheckOut').removeAttr("disabled");
+
+
+
+
+                    if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null) || $('#grandTotal').val() == "") {
+                        alert("No data");
+                        closeModal();
+                    }
+                    else {
+
+                        //close bootstrap modal
+                        $('#myModal').modal('hide');
+                        //open loader
+                        openModal();
+
+                        //post form
+                        $.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
+                            if (data == null) {
+                                closeModal();
+                                swal("Some inputs may be missing!");
+                            }
+                            else {
+                                closeModal();
+                                window.location.href = "../../../SalesEntry/SalesInvoice/" + data;
+                            }
+                        }, 'json');
+                        return false;
+                    }
+
+                });
+
+            });
+
+
+
+
+            function removeItem(obj) {
+
+
+
+                $(obj).parent().parent().remove();
+                // update_total();
+
+            };
+
+            function update_total() {
+                var rows = $('.dynamicRows');
+                var total = Number();
+
+                $.each(rows, function (index, item) {
+                    total += Number($(this).children('td').eq(4).text());
+                });
+                //$('.setTotal').val(total.toFixed(2));
+                //$('.setTotalText').text(total.toFixed(2));
+            };
+
+
+
+
+
+        </script>
+
+
+        <style>
+            .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+                background-color: #847BAA;
+                color: #ecf0f1;
+                cursor: pointer;
             }
+        </style>
 
 
 
-            
-            
-
-            
-
-
-
-        })
-
-
-       
-
-
-
-
-
-
-
-
-    </script>
-
-
-}
+    }

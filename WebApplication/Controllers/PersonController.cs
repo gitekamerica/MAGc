@@ -50,6 +50,11 @@ namespace WebApplication.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Autocomplete(string term )
         {
+            IEnumerable<Persons> v = repositoryperson.Persons;
+
+
+
+
             var result = new List<KeyValuePair<string, string>>();
 
             IList<SelectListItem> List = new List<SelectListItem>();

@@ -32,6 +32,7 @@ namespace WebApplication.Concrete
                     dbEntry.ID_equipment = equipment.ID_equipment;
                     dbEntry.EquipementName = equipment.EquipementName;
                     dbEntry.EquipmentDescription = equipment.EquipmentDescription;
+                    dbEntry.Category = equipment.Category;
                    
                 }
             }

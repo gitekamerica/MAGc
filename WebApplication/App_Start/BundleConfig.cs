@@ -372,6 +372,12 @@ namespace WebApplication
             bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery-validate/js").Include(
                                          "~/AdminLTE/plugins/jquery-validate/js/jquery.validate*"));
 
+
+
+            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery-validate/js").Include(
+                                         "~/AdminLTE/plugins/jquery-validate/js/jquery.validate*"));
+
+
             // plugins | jquery-ui
             bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery-ui/js").Include(
                                          "~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"));

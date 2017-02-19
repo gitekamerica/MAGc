@@ -19,7 +19,9 @@ namespace WebApplication.Concrete
 
         public DbSet<Persons> Persons { get; set; }
 
-        
+        public DbSet<Category> Categorys { get; set; }
+
+
 
 
     }
