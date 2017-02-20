@@ -185,7 +185,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color:#c0392b; color:white;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <button type="button" id="zamykanie" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Potwierdzenie przeniesienia sprzetu</h4>
                                 </div>
                                 <div class="modal-body" style="margin:auto">
@@ -197,10 +197,10 @@
                                             <td style="width: 10px;" align="left"><b>DO KOGO</b></td>
                                             <td style="width: 90px;"><div id="dokogop"></div> </td>
                                         </tr>
-                                        <tr>
 
+                                    </table>
 
-                                            <table class="table">
+                                            <table class="table" id="myTable">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
@@ -208,40 +208,19 @@
                                                         <th>Opis</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tbl1"></tbody>
-
+                                              
                                             </table>
 
 
-                                        </tr>
+                                       
 
 
 
-                                        <tr>
-                                            <td>Discount %</td>
-                                            <td>
-                                                <textarea class="form-control" id="discountPercent1" rows="3" required></textarea>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Discount amt</td>
-                                            <td><input type="text" name="Discount" class="form-control " id="discountAmount" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Payable</td>
-                                            <td><input type="text" name="GrandTotal" class="form-control " id="grandTotal" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paid</td>
-                                            <td><input type="text" tabindex="4" class="form-control NumbersAndDecimal" id="receivedAmt" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Change</td>
-                                            <td><input type="text" readonly class="form-control " id="returnAmt" /></td>
-                                        </tr>
-
-                                    </table>
+                                                <textarea style="display:none;"  required></textarea>
+                                       
+                                  
+                               
+                                       
 
                                 </div>
                                 <div class="modal-footer" style="padding:3px;background-color:#16a085; cursor:pointer" tabindex="5" id="btnCheckOut">
@@ -409,35 +388,25 @@
 
 
                 }
+          
 
 
-                //function update_total() {
-                //    var rows = $('.dynamicRows');
-                //    //var total = Number();
-
-                //    $.each(rows, function (index, item) {
-                //        total += Number($(this).children('td').eq(4).text());
-                //    });
-
-
-                //};
-
-
-
-                //populates RHS list
+                //dodanie po kliknieciu do bocznej listy
                 $('#btnAdd').on('click', function () {
                     //Validation : Check if salesID and Qty is null
-                    if ($('#getQty').val() == '' || $('#getStockID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
-                        sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
-                        //alert();
-                    }
-                    else {
-                        //check for duplication
-                        if (CheckStockDuplication($('#getStockID').val())) {
-                            sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
+                    //if ($('#getQty').val() == '' || $('#getStockID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
+                    //    sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
+                    //    //alert();
+                    //}
+                    //else {
+                    //    //check for duplication
+                    //    if (CheckStockDuplication($('#getStockID').val())) {
+                    //        sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
 
-                        }
-                        else {
+                    //    }
+                    //    else {
+
+
                             var $table = $('#tblAppendHere');
                             $table.append(
                                 '<tr class="dynamicRows">' +
@@ -454,84 +423,83 @@
 
 
                             //calculate sub total
-                            update_total();
-                            return false;
+                         //   update_total();
+                          //  return false;
                         }
-                    }
-                });
+                    
+                );
 
-                //check if stock ID already exists in the list
-                function CheckStockDuplication(stockid) {
-                    var flag = false;
-                    $('.dynamicRows').each(function () {
-                        if ($(this).find('.txtStockID').val() == stockid) {
-                            flag = true;
-                        }
-                    });
-                    return flag;
-                };
-
-
-
-                //calculate sub total amount
-                function update_total() {
-                    var rows = $('.dynamicRows');
-                    var total = Number();
-
-                    $.each(rows, function (index, item) {
-                        total += Number($(this).children('td').eq(4).text());
-                    });
-                    $('.setTotal').val(total.toFixed(2));
-                    $('.setTotalText').text(total.toFixed(2));
-                };
-
+            
                 //on clicking Next button
                 $('#btnModalTrigger').click(function () {
+
+                    
+
+               
+
+
 
                     var $odkog = $('#odkogo').clone();
                     $('#odkogop').html($odkog);
 
                     //tblAppendHere
 
-
                     var $dokog1 = $('#odkogo').clone();
                     $('#dokogop').html($dokog1);
 
 
-                    var $tbl = $("#tblAppendHere").clone();
+                    //var $tbl = $("#tblAppendHere").clone();
+                    //$('#myTable').html($tbl);
+               
+                    
+                    $('#tblAppendHere').siblings($("tr.dynamicRows").each(function () {
+                        $this = $(this)
+                        var value = $this.find("input[name=Rate]").val();
+                        var quantity = $this.find("input[name=Qty]").val();            
 
+                        $('#myTable tr:last').after('<tr><td>' + value + '</td>' + '<td>' + quantity + '</td>' + '</tr>');
 
-                    alert($tbl.html());
+                    }));
 
+                  
+
+                    
                     //  $('#tbl1').html($tbl);
 
-                    $('#grandTotal').val('');
-                    $('#receivedAmt').val('');
-                    $('#returnAmt').val('');
+                    //$('#grandTotal').val('');
+                    //$('#receivedAmt').val('');
+                    //$('#returnAmt').val('');
                 });
+
+
+                $(".close").on('click', function () { $("#myTable tr").empty(); })
+                
+              
 
                 //focuses cursor on discount txtbox on modal load
-                $('#myModal').on('shown.bs.modal', function () {
-                    $('#discountPercent').focus();
-                })
+                //$('#myModal').on('shown.bs.modal', function () {
+                  
+                 
+                //    //$('#discountPercent').focus();
+                //})
 
-                //Calculate Discount
-                $('#discountPercent').keyup(function () {
-                    var Odkogop = $('#odkogo').val();
-                    var percent = Number($('#discountPercent').val());
-                    var discountAmount = ((percent / 100) * total).toFixed(2);
-                    var grandTotal = total - discountAmount;
-                    $('#discountAmount').val(discountAmount);
-                    $('#grandTotal').val(grandTotal.toFixed(2));
-                });
+                ////Calculate Discount
+                //$('#discountPercent').keyup(function () {
+                //    var Odkogop = $('#odkogo').val();
+                //    var percent = Number($('#discountPercent').val());
+                //    var discountAmount = ((percent / 100) * total).toFixed(2);
+                //    var grandTotal = total - discountAmount;
+                //    $('#discountAmount').val(discountAmount);
+                //    $('#grandTotal').val(grandTotal.toFixed(2));
+                //});
 
                 //calculate return amount
-                $('#receivedAmt').keyup(function () {
-                    var grandTotal = Number($('#grandTotal').val());
-                    var received = Number($('#receivedAmt').val());
-                    var returnAmt = (received - grandTotal).toFixed(2);
-                    $('#returnAmt').val(returnAmt);
-                });
+                //$('#receivedAmt').keyup(function () {
+                //    var grandTotal = Number($('#grandTotal').val());
+                //    var received = Number($('#receivedAmt').val());
+                //    var returnAmt = (received - grandTotal).toFixed(2);
+                //    $('#returnAmt').val(returnAmt);
+                //});
 
 
 
@@ -542,42 +510,48 @@
                     update_total();
                 };
 
+
+             
+
                 //on clicking checkout button
-                $('#btnCheckOut').on('click', function () {
-                    $('#btnCheckOut').removeAttr("disabled");
+                //$('#btnCheckOut').on('click', function () {
+                //    $('#btnCheckOut').removeAttr("disabled");
 
 
 
 
-                    if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null) || $('#grandTotal').val() == "") {
-                        alert("No data");
-                        closeModal();
-                    }
-                    else {
+                //    if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null) || $('#grandTotal').val() == "") {
+                //        alert("No data");
+                //        closeModal();
+                //    }
+                //    else {
 
-                        //close bootstrap modal
-                        $('#myModal').modal('hide');
-                        //open loader
-                        openModal();
+                //        //close bootstrap modal
+                //        $('#myModal').modal('hide');
+                //        //open loader
+                //        openModal();
 
-                        //post form
-                        $.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
-                            if (data == null) {
-                                closeModal();
-                                swal("Some inputs may be missing!");
-                            }
-                            else {
-                                closeModal();
-                                window.location.href = "../../../SalesEntry/SalesInvoice/" + data;
-                            }
-                        }, 'json');
-                        return false;
-                    }
+                //        //post form
+                //        $.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
+                //            if (data == null) {
+                //                closeModal();
+                //                swal("Some inputs may be missing!");
+                //            }
+                //            else {
+                //                closeModal();
+                //                window.location.href = "../../../SalesEntry/SalesInvoice/" + data;
+                //            }
+                //        }, 'json');
+                //        return false;
+                //    }
 
-                });
+                //});
 
             });
 
+
+
+          
 
 
 
@@ -590,16 +564,16 @@
 
             };
 
-            function update_total() {
-                var rows = $('.dynamicRows');
-                var total = Number();
+            //function update_total() {
+            //    var rows = $('.dynamicRows');
+            //    var total = Number();
 
-                $.each(rows, function (index, item) {
-                    total += Number($(this).children('td').eq(4).text());
-                });
-                //$('.setTotal').val(total.toFixed(2));
-                //$('.setTotalText').text(total.toFixed(2));
-            };
+            //    $.each(rows, function (index, item) {
+            //        total += Number($(this).children('td').eq(4).text());
+            //    });
+            //    //$('.setTotal').val(total.toFixed(2));
+            //    //$('.setTotalText').text(total.toFixed(2));
+            //};
 
 
 
