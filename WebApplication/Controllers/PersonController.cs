@@ -50,7 +50,7 @@ namespace WebApplication.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Autocomplete(string term )
         {
-            IEnumerable<Persons> v = repositoryperson.Persons;
+            IEnumerable<Persons> vperson = repositoryperson.Persons;
 
 
 
@@ -58,10 +58,15 @@ namespace WebApplication.Controllers
             var result = new List<KeyValuePair<string, string>>();
 
             IList<SelectListItem> List = new List<SelectListItem>();
-            List.Add(new SelectListItem { Text = "test1", Value = "0" });
-            List.Add(new SelectListItem { Text = "test2", Value = "1" });
-            List.Add(new SelectListItem { Text = "test3", Value = "2" });
-            List.Add(new SelectListItem { Text = "test4", Value = "3" });
+
+
+            foreach (var p in vperson)
+            {
+
+                List.Add(new SelectListItem { Text = p.FirstName + " " + p.Surname, Value = p.IdPerson.ToString() });
+            }
+
+
 
             foreach (var item in List)
             {
@@ -77,19 +82,23 @@ namespace WebApplication.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult GetDetail(int id)
         {
-            DemoModel model = new DemoModel();
+            Persons vperson = repositoryperson.Persons.Where(x => x.IdPerson == id).FirstOrDefault();
+
+            Persons model = new Persons();
             // select data by id here display static data;
             if (id == 0)
             {
-                model.id = 1;
-                model.name = "Yogesh Tyagi";
-                model.mobile = "9460516787";
+                model.IdPerson = 0;
+                model.FirstName  = "brak";
+                model.Surname = "brak";
+                model.Position = "brak";
             }
             else
             {
-                model.id = 2;
-                model.name = "Pratham Tyagi";
-                model.mobile = "9460516787";
+                model.IdPerson = vperson.IdPerson;
+                model.FirstName = vperson.FirstName;
+                model.Surname = vperson.Surname;
+                model.Position = vperson.Position;
             }
 
             return Json(model);

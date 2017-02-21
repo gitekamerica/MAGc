@@ -10,6 +10,7 @@
             <tr>               
                 <th>Nazwa sprzętu</th>
                 <th>Opis sprzętu</th>
+                <th>Właściciel</th>    
                 <th>Kategoria</th>
                 <th>Wykonaj</th>
             </tr>
@@ -39,7 +40,7 @@
 
             function () {
                 var oTable = $('#myDatatable').DataTable({
-                    
+
 
 
                     "ajax":
@@ -51,16 +52,18 @@
                     "columns":
                         [
                         { "data": "EquipementName", "autoWidth": true, "title": "Nazwa sprzętu" },
-
                         { "data": "EquipmentDescription", "autoWidth": true },
-
+                         { "data": "Person", "autoWidth": true },
                         { "data": "CategoryName", "autoWidth": true },
 
 
                         { "data": "ID_equipment", "width": "50px", "render": function (data) { return '<a class="popup" href="/Equipment/Save/' + data + '">Edycja</a>' } }
+
+
+
                         ],
                     "pageLength": 25
-                })
+                });
 
 
                 $('.tablecontainer').on('click', 'a.popup', function (e) {

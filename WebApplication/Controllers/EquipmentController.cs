@@ -35,7 +35,10 @@ namespace WebApplication.Controllers
             var equipments = (from x in repository.Equipments.AsEnumerable()
                              join y in repositorycategory.Categorys.AsEnumerable()
                              on x.Category equals y.id_category
-                             select new { ID_equipment = x.ID_equipment, EquipementName = x.EquipementName, EquipmentDescription = x.EquipmentDescription, CategoryName = y.categoryName                      
+                             join z in repositoryperson.Persons.AsEnumerable()
+                             on x.Person equals z.IdPerson
+
+                             select new { ID_equipment = x.ID_equipment, EquipementName = x.EquipementName, EquipmentDescription = x.EquipmentDescription, CategoryName = y.categoryName   , Person = z.FirstName + " " + z.Surname                 
               } ).ToList();
             return Json(new { data = equipments }, JsonRequestBehavior.AllowGet);
         }
@@ -57,9 +60,20 @@ namespace WebApplication.Controllers
             });
 
 
-
             ViewBag.Testowy = categorie;
-            
+
+
+
+
+            var osoby = repositoryperson.Persons.Select(c => new SelectListItem()
+            {
+                Text = c.FirstName + " " + c.Surname,
+                Value = c.IdPerson.ToString()
+
+            });
+
+
+            ViewBag.Osoby = osoby;
 
 
 

@@ -13,12 +13,12 @@ namespace WebApplication.Entities
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int ID_equipment { get; set; }
-        
+        public int ID_equipment { get; set; }     
         [DisplayName("Nazwa sprzetu")]
         public string EquipementName { get; set; }
         public string EquipmentDescription { get; set; }
         public int  Category { get; set; }
+        public int? Person { get; set; }
 
     }
 

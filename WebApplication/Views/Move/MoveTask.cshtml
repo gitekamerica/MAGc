@@ -9,8 +9,6 @@
 
 
 <div class="container">
-
-
     <!--  tytyl || od kogo || do kogo -->
     <div class="row">
         <div class="col-xs-12">
@@ -147,7 +145,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12" style="">
-                                    <h4 style=" align-content:center">&nbsp;<span class="glyphicon glyphicon-list"></span> &nbsp; &nbsp; Sales Items</h4>
+                                    <h4 style=" align-content:center">&nbsp;<span class="glyphicon glyphicon-list"></span> &nbsp; &nbsp; Przesunięcie</h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -256,6 +254,8 @@
                 // Obsługa przycisku od kogo
                 $('.tablecontainer').on('click', 'a.popup', function (e) {
                     e.preventDefault();
+                    //kontynuowanie wykonania funkcji 
+
                     OpenPopup($(this).attr('href'));
                 })
 
@@ -265,7 +265,6 @@
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
-
 
 
                     $dialog = $('<div class="popupWindow" style="overflow:auto "></div>').html($pageContent).dialog({
@@ -314,9 +313,10 @@
 
                                     success: function (data) {
                                         $('#VisitorDetail').show();
-                                        $("#Id").html(data.id)
-                                        $("#Name").html(data.name)
-                                        $("#Mobile").html(data.mobile)
+                                        $("#IdPerson").html(data.IdPerson)
+                                        $("#FirstName").html(data.FirstName)
+                                        $("#Surname").html(data.Surname)
+                                        $("#Position").html(data.Position)
                                         action = data.Action;
                                     },
                                     error: function (xhr, ajaxOptions, thrownError) {
@@ -333,8 +333,7 @@
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
 
                         var url = $('#popupForm')[0].action;
-                        $('#odkogo').text($("#Id").text()).append("</br>").append($("#Name").text()).append("</br>").append(
-                        $("#Mobile").text());
+                        $('#odkogo').text(  ("ID : ")  + $("#IdPerson").text()).append("</br> Imie i Nazwisko : ").append($("#FirstName").text()).append($("#Surname").text()).append("</br> Stanowisko : ").append($("#Position").text()) ;
 
                         $dialog.dialog('close');
 
@@ -434,10 +433,6 @@
                 $('#btnModalTrigger').click(function () {
 
                     
-
-               
-
-
 
                     var $odkog = $('#odkogo').clone();
                     $('#odkogop').html($odkog);

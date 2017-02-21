@@ -37,6 +37,16 @@
         </div>
 
         <div>
+        <label>Wybierz właściciela</label>
+        
+            @Html.DropDownListFor(x => x.Person, (IEnumerable<SelectListItem>)ViewBag.Osoby, new { @class = "form-control" })
+
+        </div>
+
+
+
+
+        <div>
             <input type="submit" value="Save" />
         </div>
 
