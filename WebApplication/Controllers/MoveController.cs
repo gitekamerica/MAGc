@@ -44,7 +44,28 @@ namespace WebApplication.Controllers
             return View(equipments);
         }
 
-     
+
+
+        public ActionResult LoadEquipments(string idOsoby)
+        {
+
+            int idos = Int32.Parse(idOsoby);
+
+            var data = (from x in repositoryequipment.Equipments.AsEnumerable()
+                        join y in repositoryperson.Persons.AsEnumerable()
+                        on x.Person equals y.IdPerson
+                        where x.Person == idos
+
+                        select new { EquipementName = x.EquipementName }).ToList();
+
+
+       
+            
+
+
+
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
 
 
         // post save 
