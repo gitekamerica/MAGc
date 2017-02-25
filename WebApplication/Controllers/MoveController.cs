@@ -12,21 +12,21 @@ namespace WebApplication.Controllers
     public class MoveController : Controller
     {
 
-        private IMoveStorage repositorystorage;
-        private IMoveDetails repositorydetails;
+        //private IMoveStorage repositorystorage;
+        //private IMoveDetails repositorydetails;
         private IEquipmentRepository repositoryequipment;
         private IPersonRepository repositoryperson;
+        private ICategoryRepository repositorycategory;
 
 
-        public MoveController(IMoveStorage moveRepository, IMoveDetails detailsrepository, IEquipmentRepository repositoryeq, IPersonRepository personRepository)
+        public MoveController( IEquipmentRepository repositoryeq, IPersonRepository personRepository, ICategoryRepository repositorycat)
         {
             this.repositoryequipment = repositoryeq;
+            this.repositoryperson = personRepository    ;
+            this.repositorycategory = repositorycat;
 
-            this.repositorystorage = moveRepository;
-
-            this.repositorydetails = detailsrepository;
-            this.repositoryperson = personRepository;
-
+            // this.repositorystorage = moveRepository;
+            // this.repositorydetails = detailsrepository;
 
         }
 
@@ -51,15 +51,24 @@ namespace WebApplication.Controllers
 
             int idos = Int32.Parse(idOsoby);
 
-            var data = (from x in repositoryequipment.Equipments.AsEnumerable()
-                        join y in repositoryperson.Persons.AsEnumerable()
-                        on x.Person equals y.IdPerson
-                        where x.Person == idos
+            var data = 
+                        (from x in repositoryequipment.Equipments.AsEnumerable()
+                         join y in repositorycategory.Categorys.AsEnumerable()
+                         on x.Category equals y.id_category
+                         join z in repositoryperson.Persons.AsEnumerable()
+                         on x.Person equals z.IdPerson
+                         where x.Person == idos
 
-                        select new { EquipementName = x.EquipementName }).ToList();
-
-
-       
+                         select new
+                         {
+                             ID_equipment = x.ID_equipment,
+                             EquipementName = x.EquipementName,
+                             EquipmentDescription = x.EquipmentDescription,
+                             SerialNumber = x.SerialNumber,
+                             CompanyNumber = x.CompanyNumber,
+                             CategoryName = y.categoryName,
+                             Person = z.FirstName + " " + z.Surname
+                         }).ToList();
             
 
 
@@ -70,31 +79,26 @@ namespace WebApplication.Controllers
 
         // post save 
 
-        [HttpPost]
+        //[HttpPost]
 
-        public JsonResult SaveMove(MoveVM m)
-        {
-            bool status = false;
+        //public JsonResult SaveMove(MoveVM m)
+        //{
+        //    bool status = false;
 
-            if (ModelState.IsValid)
-            {
-                MoveStorage movestorages = new MoveStorage { MoveNo = m.MoveNo,  MoveDescription = m.MoveDescription, MoveDetails=m.MoveList };
-                repositorystorage.SaveMoveStorage(movestorages);
+        //    if (ModelState.IsValid)
+        //    {
+        //        MoveStorage movestorages = new MoveStorage { MoveNo = m.MoveNo,  MoveDescription = m.MoveDescription, MoveDetails=m.MoveList };
+        //        repositorystorage.SaveMoveStorage(movestorages);
 
+        //        status = true;
 
-            
+        //    }
+        //    else
+        //    {
+        //        status = false;
+        //    }
+        //    return new JsonResult { Data = new { status = status } };
 
-                status = true;
-
-            }
-            else
-            {
-                status = false;
-            }
-
-
-            return new JsonResult { Data = new { status = status } };
-
-        }
+        //}
     }
 }

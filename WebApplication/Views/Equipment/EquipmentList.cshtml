@@ -63,7 +63,7 @@
 
                         ],
                     "pageLength": 25
-                });
+                })
 
 
                 $('.tablecontainer').on('click', 'a.popup', function (e) {
@@ -73,44 +73,102 @@
 
 
 
+
+
                 function OpenPopup(pageUrl) {
                     var $pageContent = $('<div/>');
 
                     $pageContent.load(pageUrl);
 
-    
-
-
 
                     $dialog = $('<div class="popupWindow" style="overflow:auto" ></div>').html($pageContent).dialog({
 
-                        
+
                         draggable: true,
                         autoOpen: false,
                         resizable: false,
                         model: true,
-                        title: 'Popup dialog',
-                        height: 550,
-                        width: 600,
-                        
+                        title: 'Dodaj/modyfikuj sprzęt',
+                        height: 750,
+                        width: 1200,
+
                         close: function () {
                             $dialog.dialog('destroy').remove();
                         }
                     })
 
 
+                    $(".popupWindow").on('input', '#Person', function () {
+                        $(this).autocomplete({
+                            source: function (request, response) {
+                                var customer = new Array();
+                                $.ajax({
+                                    async: false,
+                                    cache: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("Autocomplete", "Person"))",
+                                    data: { "term": request.term },
+                                    success: function (data) {
+                                        for (var i = 0; i < data.length ; i++) {
+                                            customer[i] = { label: data[i].Value, Id: data[i].Key };
+                                        }
+                                    }
+                                });
+                                response(customer);
+                            },
+                            select: function (event, ui) {
+                                //fill selected customer details on form
+
+                                $(this).val(ui.item.value)
+                                $('#pa').val(ui.item.Id);
+                                $('#Person').val(ui.item.label);
+
+                               
+                       
+
+                                return false;
+
+
+                            }
+                        })
+
+                    })
+
+
+                    $(".popupWindow").on('click', '.nav-tabs li a', function () {
+
+                        var w = $(this).text();
+
+                        var exists = false;
+                        for (var i = 0, opts = document.getElementById('Category').options; i < opts.length; ++i)
+                            if (opts[i].text === w) {
+
+                                $('select').val(i + 1);
+
+
+                            }
+
+                    })
+
+
+
+
+
+
+
+
+
                     $('.popupWindow').on('submit', '#popupForm', function (e) {
 
-                        if ($('#nazwas').val() == '')
-                        {
+
+                        if ($('#nazwas').val() == '') {
                             $('#nazwas').addClass("form-control1");
 
 
 
                         }
-                        else
-                        {
-                            
+                        else {
+
                             var url = $('#popupForm')[0].action;
 
                             $.ajax({

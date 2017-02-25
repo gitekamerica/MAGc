@@ -11,17 +11,12 @@
     <!--  tytyl || od kogo || do kogo -->
     <div class="row">
         <div class="col-sm-12">
-
-
-
-
-
             <div class="row">
                 <div class="col-xs-6">
                 </div>
             </div>
 
-            
+
             <div class="row">
                 <div class="col-xs-6">
                 </div>
@@ -33,10 +28,10 @@
                     <h5 class="pull-right">
 
                         <h3>PRZESUNIĘCIE MAGAZYNOWE</h3>
-                        
+
                         @*<input type="text" id="MoveNo" />*@
-                        
-                        
+
+
                     </h5>
                 </div>
             </div>
@@ -46,7 +41,7 @@
 
             <div class="row">
                 <div class="col-xs-6">
-                    <div  style="margin-left:20px;" class="tablecontainer">
+                    <div style="margin-left:20px;" class="tablecontainer">
                         <strong>Od kogo:</strong><a class="popup btn btn-primary" href="/Person/Save" style="margin-left:10px"><i class="fa fa-download"></i>  Wyszukaj</a>
 
                         <br />
@@ -66,7 +61,7 @@
                         <br />
                         <br />
 
-      
+
 
                     </address>
                 </div>
@@ -75,7 +70,7 @@
                 <div class="col-xs-6" style="margin-top:25px; margin-bottom:30px; ">
                     <address style="margin-left:20px;">
                         <strong>Kto sporządził:</strong><br>
-                         Leszek Zalewski <br><br>
+                        Leszek Zalewski <br><br>
 
                     </address>
                 </div>
@@ -89,8 +84,6 @@
         </div>
     </div>
 
-
-
     @*<div id="modalSpinner">
             <img id="loader" src="~/Content/images/477.GIF" />
         </div>*@
@@ -98,8 +91,6 @@
 
 
     <div class="row">
-
-
         <!--Main table-->
         <div id="MainDiv" class="col-sm-8">
             <div class="box box-danger box-body">
@@ -108,57 +99,21 @@
                     </div>
                 </div>
 
-                @*<div class="row">
-                        <div class="col-md-12">
-                            @using (Html.BeginForm())
-                            {
-                                <table class="table table-striped table-hover" id="maintable">
-                                    <thead>
-                                        <tr style="background-color:#3d566e; color:#ecf0f1">
-                                            <th>
-                                                ID_equipment
-                                            </th>
-                                            <th>
-                                                EquipementName
-                                            </th>
-                                            <th>
-                                                EquipmentDescription
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr class="rows">
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ID_equipment)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EquipementName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EquipmentDescription)
-                                            </td>
-
-                                        </tr>
-                                    }
-                                </table>
-                            }
-                        </div>
-                    </div>*@
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <table class="table table-striped table-hover" id="maintable">
+                        <thead>
+                            <tr>
+                                <th>EquipementName</th>
+                                <th>CompanyNumber</th>
+                                <th>SerialNumber</th>
+                                <th>Category</th>
+                                <th>Person</th>
+                                <th>Opis</th>
+                            </tr>
+                        </thead>
+                    </table>
 
-                        <table class="table table-striped table-hover" id="maintable">
-                            <thead>
-                                <tr>
-                                    <th>EquipmentName</th>
-
-
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
                 </div>
 
 
@@ -171,8 +126,6 @@
                 <form id="formSerialized">
 
                     <!-- boczna tabelka-->
-
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -186,9 +139,9 @@
                                         <thead>
                                             <tr>
 
-                                                <th>ID</th>
                                                 <th>Nazwa</th>
-                                                <th>Opis</th>
+                                                <th>Numer Firmowy</th>
+                                                <th>Numer Seryjny</th>
 
                                                 <th><span class="glyphicon glyphicon-trash"></span></th>
                                             </tr>
@@ -202,7 +155,7 @@
                             <div class="row footer" id="btnModalTrigger">
                                 <div class="col-md-12">
                                     <button data-toggle="modal" class="btn-block" data-target="#myModal" style="background-color:#16a085; cursor:pointer">
-                                        <h4 style="color:#ffffff; text-align:center;"> NEXT &nbsp;<span class="glyphicon glyphicon-forward"></span> &nbsp; &nbsp; </h4>
+                                        <h4 style="color:#ffffff; text-align:center;"> DALEJ &nbsp;<span class="glyphicon glyphicon-forward"></span> &nbsp; &nbsp; </h4>
                                     </button>
                                 </div>
                             </div>
@@ -219,7 +172,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Potwierdzenie przeniesienia sprzetu</h4>
                                 </div>
                                 <div class="modal-body" style="margin:auto">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" style="margin-bottom:30px;">
                                         <tr>
                                             <td style="width: 10px;" align="left"><b>OD KOGO</b></td>
                                             <td style="width: 90px;"><div id="odkogop"></div> </td>
@@ -231,30 +184,16 @@
                                     </table>
 
                                     <table class="table" id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nazwa</th>
-                                                <th>Opis</th>
-                                            </tr>
-                                        </thead>
+                                       
 
-                                    </table>
+</table>
 
-
-
-
-
-
+                                    <!--sprawdzic-->
                                     <textarea style="display:none;" required></textarea>
-
-
-
-
 
                                 </div>
                                 <div class="modal-footer" style="padding:3px;background-color:#16a085; cursor:pointer" tabindex="5" id="btnCheckOut">
-                                    <h4 style="color:#ffffff; text-align:center"> Done &nbsp;<span class="glyphicon glyphicon-check glyphicon-align-right"></span> &nbsp; &nbsp; </h4>
+                                    <h4 style="color:#ffffff; text-align:center"> Wykonaj &nbsp;<span class="glyphicon glyphicon-check glyphicon-align-right"></span> &nbsp; &nbsp; </h4>
                                 </div>
                             </div>
                         </div>
@@ -267,6 +206,7 @@
 
     </div>
 </div>
+
 
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -290,20 +230,9 @@
                 });
 
                 $("#MoveDate").datepicker('setDate', new Date());
-               
+
             })
 
-
-
-            $('#odkogo').change(function () { alert('zmienil sie'); });
-
-
-
-
-            $('#odkogo').bind('contentchanged', function () {
-                // do something after the div content has changed
-                alert('woo');
-            });
 
 
 
@@ -330,7 +259,7 @@
                     autoOpen: false,
                     resizable: false,
                     model: true,
-                    title: 'Popup dialog',
+                    title: '',
                     height: 550,
                     width: 600,
                     close: function () {
@@ -370,7 +299,7 @@
                                 data: { "id": ui.item.Id },
 
                                 success: function (data) {
-                                    $('#VisitorDetail').show();
+                                    $('#PersonDetail').show();
                                     $("#IdPerson").html(data.IdPerson)
                                     $("#FirstName").html(data.FirstName)
                                     $("#Surname").html(data.Surname)
@@ -391,7 +320,10 @@
                 $('.popupWindow').on('submit', '#popupForm', function (e) {
 
                     var url = $('#popupForm')[0].action;
-                    $('#odkogo').text(("ID : ") + $("#IdPerson").text()).append("</br> Imie i Nazwisko : ").append($("#FirstName").text()).append($("#Surname").text()).append("</br> Stanowisko : ").append($("#Position").text());
+                    $('#odkogo').text(("ID OSOBY : ") + $("#IdPerson").text()).append("</br><b> Imie i Nazwisko : </b> ").append($("#FirstName").text()).append(" ").append($("#Surname").text()).append("</br><b> Stanowisko : </b> ").append($("#Position").text());
+
+
+                    $("#tblAppendHere tr").remove();
 
 
                     var numer = $("#IdPerson").text();
@@ -412,7 +344,13 @@
                         },
                         "columns": [
 
-                        { "data": "EquipementName", "autoWidth": true }
+                        { "data": "EquipementName", "autoWidth": true },
+                          { "data": "CompanyNumber", "autoWidth": true },
+                            { "data": "SerialNumber", "autoWidth": true },
+                              { "data": "CompanyNumber", "autoWidth": true },
+                                { "data": "CategoryName", "autoWidth": true },
+                                  { "data": "Person", "autoWidth": true }
+
 
                         ]
                     });
@@ -449,17 +387,6 @@
             //});
 
 
-
-
-
-
-
-
-
-
-
-
-
             //On clicking table row
 
             document.getElementById('maintable').onclick = function (event) {
@@ -481,10 +408,11 @@
                     '<tr class="dynamicRows">' +
                     //gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
 
-                     '<td>' + cells[0].innerHTML + '</td>' +
+               
 
-                    //'<td><input type="hidden" name="Qty"     value="' + cells[1].innerHTML + '"  style="width:60px;"/>' + cells[1].innerHTML + '</td>' +
-                    //'<td><input type="hidden" name="Rate"    value= "' + cells[2].innerHTML + '"/>' + cells[2].innerHTML + '</td>' +
+                    '<td><input type="hidden" name="bEquipmentName"     value="' + cells[0].innerHTML + '"  style="width:60px;"/>' + cells[0].innerHTML + '</td>' +
+                    '<td><input type="hidden" name="bCompanyNumber"     value="' + cells[1].innerHTML + '"  style="width:60px;"/>' + cells[1].innerHTML + '</td>' +
+                    '<td><input type="hidden" name="bSerialNumber"    value= "' + cells[2].innerHTML + '"/>' + cells[2].innerHTML + '</td>' +
 
                     //remove icon
                        '<td><a href="#"  class="glyphicon glyphicon-remove" onclick="removeItem(this);"></a></td>' + '</tr>'
@@ -496,43 +424,43 @@
 
 
 
-            //dodanie po kliknieciu do bocznej listy
-            $('#btnAdd').on('click', function () {
-                //Validation : Check if salesID and Qty is null
-                //if ($('#getQty').val() == '' || $('#getStockID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
-                //    sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
-                //    //alert();
-                //}
-                //else {
-                //    //check for duplication
-                //    if (CheckStockDuplication($('#getStockID').val())) {
-                //        sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
+            ////dodanie po kliknieciu do bocznej listy
+            //$('#btnAdd').on('click', function () {
+            //    //Validation : Check if salesID and Qty is null
+            //    //if ($('#getQty').val() == '' || $('#getStockID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
+            //    //    sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
+            //    //    //alert();
+            //    //}
+            //    //else {
+            //    //    //check for duplication
+            //    //    if (CheckStockDuplication($('#getStockID').val())) {
+            //    //        sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
 
-                //    }
-                //    else {
-
-
-                var $table = $('#tblAppendHere');
-                $table.append(
-                    '<tr class="dynamicRows">' +
-                    //gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
-                    '<td>' + $('#getStockID').val() + '</td>' +
-                    '<td><input type="hidden" class="txtStockID" name="StockID"  value= "' + $('#getStockID').val() + '"/>' + $('#getItem').val() + '</td>' +
-                    '<td><input type="hidden" name="Qty"     value="' + $('#getQty').val() + '"  style="width:60px;"/>' + $('#getQty').val() + '</td>' +
-                    '<td><input type="hidden" name="Rate"    value= "' + $('#getRate').val() + '"/>' + $('#getRate').val() + '</td>' +
-                    '<td><input type="hidden" name="Amount" value="' + $('#getAmount').val() + '"  class="subAmt"/>' + $('#getAmount').val() + '</td>' +
-                    //remove icon
-                    '<td><a href="#" class="glyphicon glyphicon-remove" onclick="removeItem(this)"></a></td>'
-                    + '</tr>'
-                    );
+            //    //    }
+            //    //    else {
 
 
-                //calculate sub total
-                //   update_total();
-                //  return false;
-            }
+            //    var $table = $('#tblAppendHere');
+            //    $table.append(
+            //        '<tr class="dynamicRows">' +
+            //        //gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
+            //        '<td>' + $('#getStockID').val() + '</td>' +
+            //        '<td><input type="hidden" class="txtStockID" name="StockID"  value= "' + $('#getStockID').val() + '"/>' + $('#getItem').val() + '</td>' +
+            //        '<td><input type="hidden" name="cEquipmentName"     value="' + $('#bEquipmentName').val() + '"  style="width:60px;"/>' + $('#bEquipmentName').val() + '</td>' +
+            //        '<td><input type="hidden" name="Rate"    value= "' + $('#getRate').val() + '"/>' + $('#getRate').val() + '</td>' +
+            //        '<td><input type="hidden" name="Amount" value="' + $('#getAmount').val() + '"  class="subAmt"/>' + $('#getAmount').val() + '</td>' +
+            //        //remove icon
+            //        '<td><a href="#" class="glyphicon glyphicon-remove" onclick="removeItem(this)"></a></td>'
+            //        + '</tr>'
+            //        );
 
-            );
+
+            //    //calculate sub total
+            //    //   update_total();
+            //    //  return false;
+            //}
+
+            //);
 
 
             //on clicking Next button
@@ -552,13 +480,21 @@
                 //var $tbl = $("#tblAppendHere").clone();
                 //$('#myTable').html($tbl);
 
+                var header = "<thead><tr><th>Nazwa Sprzętu</th><th>Numer Firmowy</th>  <th>Numer Seryjny</th></tr></thead>";
+            
+
+                $("#myTable").append(header);
+
+
 
                 $('#tblAppendHere').siblings($("tr.dynamicRows").each(function () {
                     $this = $(this)
-                    var value = $this.find("input[name=Rate]").val();
-                    var quantity = $this.find("input[name=Qty]").val();
+                    var ename = $this.find("input[name=bEquipmentName]").val();
+                    var comnumber = $this.find("input[name=bCompanyNumber]").val();
+                    var serialnumb = $this.find("input[name=bSerialNumber]").val();
 
-                    $('#myTable tr:last').after('<tr><td>' + value + '</td>' + '<td>' + quantity + '</td>' + '</tr>');
+
+                    $('#myTable tr:last').after('<tr><td>' + ename + '</td>' + '<td>' + comnumber + '</td>' + '<td>' + serialnumb + '</td>' + '</tr>');
 
                 }));
 
@@ -614,39 +550,44 @@
 
 
 
-            //on clicking checkout button
-            //$('#btnCheckOut').on('click', function () {
-            //    $('#btnCheckOut').removeAttr("disabled");
+            //  po kliknięciu wykonaja
+
+            $('#btnCheckOut').on('click', function () {
 
 
+                alert("zapis do bazy");
+
+                $('#btnCheckOut').removeAttr("disabled");
+
+                $('#myModal').modal('hide');
 
 
-            //    if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null) || $('#grandTotal').val() == "") {
-            //        alert("No data");
-            //        closeModal();
-            //    }
-            //    else {
+                //if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null) || $('#grandTotal').val() == "") {
+                //    alert("No data");
+                //    closeModal();
+                //}
+                //else {
 
-            //        //close bootstrap modal
-            //        $('#myModal').modal('hide');
-            //        //open loader
-            //        openModal();
+                //    //close bootstrap modal
+                //    $('#myModal').modal('hide');
+                //    //open loader
+                //    openModal();
 
-            //        //post form
-            //        $.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
-            //            if (data == null) {
-            //                closeModal();
-            //                swal("Some inputs may be missing!");
-            //            }
-            //            else {
-            //                closeModal();
-            //                window.location.href = "../../../SalesEntry/SalesInvoice/" + data;
-            //            }
-            //        }, 'json');
-            //        return false;
-            //    }
+                //    //post form
+                //    $.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
+                //        if (data == null) {
+                //            closeModal();
+                //            swal("Some inputs may be missing!");
+                //        }
+                //        else {
+                //            closeModal();
+                //            window.location.href = "../../../SalesEntry/SalesInvoice/" + data;
+                //        }
+                //    }, 'json');
+                //    return false;
+                //}
 
-            //});
+            });
 
         });
 

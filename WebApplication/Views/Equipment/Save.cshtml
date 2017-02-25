@@ -2,53 +2,119 @@
 
 
 
-
-
-
-
-
-@using (Html.BeginForm("Save", "Equipment", FormMethod.Post, new { id = "popupForm" }))
-{
- 
-    if (Model != null && Model.ID_equipment > 0)
+    @using (Html.BeginForm("Save", "Equipment", FormMethod.Post, new { id = "popupForm" }))
     {
 
-        @Html.HiddenFor(a=>a.ID_equipment)
+
+        <table class="table table-condensed" id="tabelka">
+
+            @if (Model != null && Model.ID_equipment > 0)
+            {
+
+            @Html.HiddenFor(a => a.ID_equipment)
+
+            }
+
+            <tr>
+                <td width="50%">
+                    <div class="form-group">
+                        <label>Wybierz kategorię</label>
+                        @Html.DropDownListFor(x => x.Category, (IEnumerable<SelectListItem>)ViewBag.Testowy, new { @class = "form-control" })
+
+
+                    </div>
+                </td>
+                <td width="50%">
+                    <div>
+
+                        <ul class="nav nav-tabs centered" data-tabs="tabs" id="demolist">
+                            <li><a data-toggle="tab"><p><span class="fa fa-laptop large"></span></p><p><font size="2">Laptopy</font></p></a></li>
+                            <li><a data-toggle="tab"><p><span class="glyphicon glyphicon-blackboard large"></span></p><p><font size="2">Komputery</font></p></a></li>
+                            <li><a data-toggle="tab"><p><span class="glyphicon glyphicon-blackboard large"></span></p><p><font size="2">Monitory</font></p></a></li>
+                            <li><a data-toggle="tab"><p><span class="glyphicon glyphicon-hdd large"></span></p><p><font size="2">Dyski</font></p></a></li>
+                            <li><a data-toggle="tab"><p><span class="glyphicon glyphicon-print large"></span></p><p><font size="2">Drukarki</font></p></a></li>
+
+
+                        </ul>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Nazwa sprzętu</label>
+                        @Html.TextBoxFor(a => a.EquipementName, new { @class = "form-control", id = "nazwas" })
+                    </div>
+                </td>
+
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Numer seryjny</label>
+                        @Html.TextBoxFor(a => a.CompanyNumber, new { @class = "form-control" })
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Numer firmowy</label>
+                        @Html.TextBoxFor(a => a.SerialNumber, new { @class = "form-control" })
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Opis</label>
+                        @Html.TextBoxFor(a => a.EquipmentDescription, new { @class = "form-control" })
+                    </div>
+                </td>
+
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>wpisz</label>
+                        @Html.TextBoxFor(model => model.Person, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Person, new {  Name = "pa", id="pa", style = "display: none;" })
+
+
+
+
+                                        </div>
+                </td>
+                <td></td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td>
+                    <div style="float:right">
+
+                        <input type="submit" class="btn btn-danger pull-right" style="float:left" value="Zapisz">
+
+                    </div>
+                </td>
+            </tr>
+
+        </table>
 
     }
 
 
-    <div class="form-group">
-        <label>Wybierz kategorię</label>
-        @Html.DropDownListFor(   x => x.Category, (IEnumerable<SelectListItem>)ViewBag.Testowy, new { @class = "form-control" })
-
-
-        </div>
-
-        <div class="form-group" >
-            <label>Nazwa sprzętu</label>
-            @Html.TextBoxFor(a => a.EquipementName,  new { @class = "form-control", id = "nazwas" })
-        </div>
-
-
-        <div class="form-group">
-            <label>Opis</label>
-            @Html.TextBoxFor(a => a.EquipmentDescription, new { @class = "form-control" })
-        </div>
-
-        <div>
-        <label>Wybierz właściciela</label>
-        
-            @Html.DropDownListFor(x => x.Person, (IEnumerable<SelectListItem>)ViewBag.Osoby, new { @class = "form-control" })
-
-        </div>
-
-
-
-
-        <div>
-            <input type="submit" value="Save" />
-        </div>
-
-        }
-
+<style>
+ .large {
+    font-size: 15px;
+}
+</style>

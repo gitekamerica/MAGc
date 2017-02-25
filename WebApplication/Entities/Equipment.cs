@@ -17,8 +17,10 @@ namespace WebApplication.Entities
         [DisplayName("Nazwa sprzetu")]
         public string EquipementName { get; set; }
         public string EquipmentDescription { get; set; }
-        public int  Category { get; set; }
+        public int?  Category { get; set; }
         public int? Person { get; set; }
+        public string CompanyNumber { get; set; }
+        public string SerialNumber { get; set; }
 
     }
 
